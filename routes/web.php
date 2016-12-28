@@ -1,22 +1,19 @@
 <?php
 
 Route::get('', 'UserLoginController@index');
-
-Route::group(['prefix' => 'registrar'], function() {
-
-    Route::get('/', ['as' => 'register', 'uses' => 'UserRegisterController@register']);
-    Route::get('/post', ['as' => 'register.post', 'uses' => 'UserRegisterController@getPostRegister']);
-
+Route::group(['prefix' => 'autenticar'], function() {
+    Route::post('autenticar/post', ['as' => 'authenticate.post', 'uses' => 'UserLoginController@getPostAuthenticate']);
 });
 
-Route::post('autenticar', ['as' => 'authenticate', 'uses' => 'UserLoginController@authenticate']);
+Route::group(['prefix' => 'registrar'], function() {
+    Route::get('/', ['as' => 'register', 'uses' => 'UserRegisterController@register']);
+    Route::get('/post', ['as' => 'register.post', 'uses' => 'UserRegisterController@getPostRegister']);
+});
 
 Route::group(['prefix' => 'recuperar-senha'], function() {
-
     Route::get('/', ['as' => 'recover', 'uses' => 'UserRecoverPasswordController@recover']);
     Route::post('post', ['as' => 'recover.post', 'uses' => 'UserRecoverPasswordController@getPostRecover']);
     Route::get('aviso', ['as' => 'recover.notice', 'uses' => 'UserRecoverPasswordController@notice']);
-
 });
 
 Route::group(['prefix' => 'senha-redefinir'], function() {

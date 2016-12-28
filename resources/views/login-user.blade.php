@@ -21,19 +21,18 @@
               <span class="span-or">OU</span>
             </div>
 
-            <form class="form-signin" action="{{url('/autenticar')}}" method="post">
-                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
-                <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
-                <input type="password" name="password" class="form-control" placeholder="Senha" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                Fazer Login</button>
-                <label class="checkbox pull-left">
-                <input type="checkbox" value="remember-me">
+            {!! Form::open(['route' => 'authenticate.post', 'class' => 'form-signin']) !!}
+
+                {{ Form::email('email', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu e-mail', 'required' => 'autofocus'] ) }}
+                {{ Form::password('password', ['class' => 'form-control input-new-password-up', 'placeholder' => 'Nova Senha', 'required' => 'autofocus'] ) }}
+                {{ Form::submit('Fazer Login', ['class' => 'btn btn-lg btn-primary btn-block']) }}
+                {{ Form::checkbox('remember', 'true', false, ['class' => 'remember-me']) }}
                 Lembrar senha
-                </label>
-                <a href="{{url('/recuperar-senha')}}" class="pull-right need-help">Esqueceu sua senha?</a><span class="clearfix"></span>
-            </form>
+                <a href="{{ route('recover') }}" class="pull-right need-help">Esqueceu sua senha?</a><span class="clearfix"></span>
+
+            {!! Form::close() !!}
+
         </div>
 
         @include('partials.url-account-free')

@@ -39,6 +39,10 @@
     z-index: 2;
 }
 
+.form-signin .input[type="checkbox"] {
+    margin-top: 15px;
+}
+
 .form-signin input[type="text"] {
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
@@ -55,6 +59,7 @@
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+
 }
 
 .form-new-password {
@@ -89,6 +94,17 @@
     border-top-right-radius: 0;
 }
 
+.input-register-password-up {
+    margin-bottom: -100px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.input-register-password-down {
+    margin-bottom: 100px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 
 .form-recuperar_senha {
     max-width: 330px;

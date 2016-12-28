@@ -19,7 +19,7 @@
 
             {!! Form::open(['route' => 'recover.post', 'class' => 'form-recuperar_senha']) !!}
 
-                {{ Form::email($name =null, $value = null, $attributes = ['class' => 'form-control', 'name' => 'email'] ) }}
+                {{ Form::email('email', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu e-mail', 'required' => 'autofocus'] ) }}
                 {{ Form::submit('Recuperar Senha', ['class' => 'btn btn-lg btn-primary btn-block']) }}
 
                 <a href="{{url('/')}}" rel="nofollow" class="pull-right need-voltar" title="Voltar para login">Voltar para login</a><span class="clearfix"></span>
