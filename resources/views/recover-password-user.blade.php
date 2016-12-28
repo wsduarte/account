@@ -17,14 +17,15 @@
 
             </div>
 
-            <form class="form-recuperar_senha" method="post">
+            {!! Form::open(['route' => 'recover.post', 'class' => 'form-recuperar_senha']) !!}
 
-                <input type="email" class="form-control" placeholder="Informe o email cadastrado" required autofocus>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                Recuperar Senha</button>
+                {{ Form::email($name =null, $value = null, $attributes = ['class' => 'form-control', 'name' => 'email'] ) }}
+                {{ Form::submit('Recuperar Senha', ['class' => 'btn btn-lg btn-primary btn-block']) }}
+
                 <a href="{{url('/')}}" rel="nofollow" class="pull-right need-voltar" title="Voltar para login">Voltar para login</a><span class="clearfix"></span>
 
-            </form>
+            {!! Form::close() !!}
+
         </div>
 
     </div>
