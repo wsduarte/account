@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\OAuth;
 
 use App\Contracts\UserRegisterGoogleRepositoryInterface;
+use App\Http\Controllers\Controller;
 use App\Repositories\UserRegisterGoogleRepository;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Sessions\Subdomains\App\Account\UserSessions;
 use Illuminate\Support\Facades\Session;
 use OAuth;
 
