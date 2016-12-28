@@ -87,6 +87,7 @@ class UserRecoverPasswordRepositoryTest extends TestCase
             $this->assertTrue(is_numeric($id) ? True : False);
 
             $this->test->setEmail($this->email);
+            $this->test->setEmail($this->email);
             $result = $this->test->recover($this->test);
             $this->assertTrue($result);
 

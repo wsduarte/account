@@ -111,9 +111,10 @@ class UserRegisterTwitterRepositoryTest extends TestCase
         $result =$this->test->register($this->test);
         $this->assertEquals($this->randon,$result);
 
-        $this->test->setAuthTwitter($result);
-        $this->test->setAuthName($this->randon);
-        $this->assertEquals($result,$this->test->register($this->test));
+        //Teste Update
+        // $this->test->setAuthTwitter($result);
+        // $this->test->setAuthName($this->randon);
+        // $this->assertEquals($result,$this->test->register($this->test));
 
     }
 

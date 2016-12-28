@@ -42,10 +42,7 @@ class UserRecoverPasswordRepository extends UserRecoverPasswordRepositoryAdapter
                 );
             }
 
-            $result =$this->user->where('email', $interface->getEmail())
-                ->select('id')
-                ->select('name')
-                ->first();
+            $result =$this->user->where('email', $interface->getEmail())->first();
 
             $token = sha1(Hash::make(microtime()));
             $recover_name = $result->name;
