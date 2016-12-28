@@ -38,13 +38,15 @@ class UserAuthenticateGoogleController extends Controller
                 $repository = new UserAuthenticateGoogleRepository();
                 if ($repository instanceof UserAuthenticateGoogleRepositoryInterface) {
 
-                    $repository->setAuthGoogle($result->id);
-                    $repository->setAuthEmail($result->email);
-                    $repository->setAuthVerifiedEmail($result->verified_email);
-                    $repository->setAuthName($result->name);
-                    $repository->setAuthPicture($result->picture);
+                    $repository->setAuthGoogle($result['id']);
+                    $repository->setAuthEmail($result['email']);
+                    $repository->setAuthVerifiedEmail($result['verified_email']);
+                    $repository->setAuthName($result['name']);
+                    $repository->setAuthPicture($result['picture']);
 
                     $data = $repository->authenticate($repository);
+
+                    dd($data);
 
 
 //                if (!is_array($data) && $data === false) {

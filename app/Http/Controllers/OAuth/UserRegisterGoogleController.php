@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Contracts\UserAuthenticateGoogleRepositoryInterface;
-use App\Repositories\UserAuthenticateGoogleRepository;
+use App\Contracts\UserRegisterGoogleRepositoryInterface;
+use App\Repositories\UserRegisterGoogleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Sessions\Subdomains\App\Account\UserSessions;
@@ -36,18 +36,16 @@ class UserRegisterGoogleController extends Controller
                 // Send a request with it
                 $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
 
-                dd($result );
+                $repository = new UserRegisterGoogleRepository();
+                if ($repository instanceof UserRegisterGoogleRepositoryInterface) {
 
-                $repository = new UserAuthenticateGoogleRepository();
-                if ($repository instanceof UserAuthenticateGoogleRepositoryInterface) {
+                    $repository->setAuthGoogle($result['id']);
+                    $repository->setAuthEmail($result['email']);
+                    $repository->setAuthVerifiedEmail($result['verified_email']);
+                    $repository->setAuthName($result['name']);
+                    $repository->setAuthPicture($result['picture']);
 
-                    $repository->setAuthGoogle($result->id);
-                    $repository->setAuthEmail($result->email);
-                    $repository->setAuthVerifiedEmail($result->verified_email);
-                    $repository->setAuthName($result->name);
-                    $repository->setAuthPicture($result->picture);
-
-                    $data = $repository->authenticate($repository);
+                    $data = $repository->register($repository);
 
 
 //                if (!is_array($data) && $data === false) {
