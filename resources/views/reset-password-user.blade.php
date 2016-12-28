@@ -11,14 +11,15 @@
 
             <div class="text-center">Por favor preencha a sua nova senha abaixo.</div>
 
-            <form class="form-new-password">
+            {!! Form::open(['route' => 'reset.password.post', 'class' => 'form-new-password']) !!}
 
-                <input type="password" class="form-control input-new-password-up" placeholder="Nova Senha" required autofocus>
-                <input type="password" class="form-control input-new-password-down" placeholder="Confirme a nova senha" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                Confirme sua senha</button>
+                {{ Form::hidden('tokenSHA1', $tokenSHA1 ) }}
+                {{ Form::password('password', ['class' => 'form-control input-new-password-up', 'placeholder' => 'Nova Senha', 'required' => 'autofocus'] ) }}
+                {{ Form::password('confirm', ['class' => 'form-control input-new-password-down','placeholder' => 'Confirme a nova senha', 'required' => 'autofocus']) }}
+                {{ Form::submit('Confirme sua senha', ['class' => 'btn btn-lg btn-primary btn-block']) }}
 
-            </form>
+            {!! Form::close() !!}
+
         </div>
 
     </div>

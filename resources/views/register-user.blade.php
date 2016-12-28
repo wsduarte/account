@@ -9,7 +9,7 @@
         <h1 class="text-center login-title">Criar conta Administrativa</h1>
         <div class="account-wall">
 
-            <div class="text-center cadastre-se">
+            <div class="text-center register-user">
                 Cadastre-se com um destes serviços
             </div>
 
@@ -20,17 +20,16 @@
               <span class="span-or">OU</span>
             </div>
 
-            <form class="form-signin">
+            {!! Form::open(['route' => 'register.post', 'class' => 'form-signin']) !!}
 
-                <input type="text" class="form-control" placeholder="Informe seu nome completo" required autofocus>
-                <input type="email" class="form-control" placeholder="Informe seu e-mail" required>
-                <input type="password" class="form-control" placeholder="Informe sua senha" required>
-                <input type="password" class="form-control" placeholder="Repita a senha" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                Confirmar</button>
+                {{ Form::text('name', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu nome completo', 'required' => 'autofocus'] ) }}
+                {{ Form::email('email', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu e-mail', 'required' => 'autofocus'] ) }}
+                {{ Form::password('password', ['class' => 'form-control input-new-password-up', 'placeholder' => 'Nova Senha', 'required' => 'autofocus'] ) }}
+                {{ Form::password('confirm', ['class' => 'form-control input-new-password-down','placeholder' => 'Confirme a nova senha', 'required' => 'autofocus']) }}
+                {{ Form::submit('Confirmar', ['class' => 'btn btn-lg btn-primary btn-block']) }}
 
+            {!! Form::close() !!}
 
-            </form>
         </div>
 
         @include('partials.terms')

@@ -1,17 +1,31 @@
 <?php
 
 Route::get('', 'UserLoginController@index');
-Route::get('registrar', ['as' => 'register', 'uses' => 'UserRegisterController@register']);
+
+Route::group(['prefix' => 'registrar'], function() {
+
+    Route::get('/', ['as' => 'register', 'uses' => 'UserRegisterController@register']);
+    Route::get('/post', ['as' => 'register.post', 'uses' => 'UserRegisterController@getPostRegister']);
+
+});
+
 Route::post('autenticar', ['as' => 'authenticate', 'uses' => 'UserLoginController@authenticate']);
 
 Route::group(['prefix' => 'recuperar-senha'], function() {
+
     Route::get('/', ['as' => 'recover', 'uses' => 'UserRecoverPasswordController@recover']);
     Route::post('post', ['as' => 'recover.post', 'uses' => 'UserRecoverPasswordController@getPostRecover']);
     Route::get('aviso', ['as' => 'recover.notice', 'uses' => 'UserRecoverPasswordController@notice']);
 
 });
 
-Route::get('redefinir-senha/{token}', ['as' => 'reset.password', 'uses' => 'UserResetPasswordController@reset']);
+Route::group(['prefix' => 'senha-redefinir'], function() {
+
+    Route::get('/{token}', ['as' => 'reset.password', 'uses' => 'UserResetPasswordController@reset']);
+    Route::post('/post', ['as' => 'reset.password.post', 'uses' => 'UserResetPasswordController@getPostReset']);
+
+});
+
 Route::get('convite-aceitar', ['as' => 'invitation.accept', 'uses' => 'UserInvitationController@accept']);
 Route::get('convite-recusar', ['as' => 'invitation.refused', 'uses' => 'UserInvitationController@refused']);
 
