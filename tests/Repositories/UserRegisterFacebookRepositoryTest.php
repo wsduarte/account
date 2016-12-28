@@ -96,10 +96,11 @@ class UserRegisterFacebookRepositoryTest extends TestCase
         $this->assertEquals($this->randon,$result);
 
         //Teste Update
-        // $this->test->setAuthFacebook($result);
-        // $this->test->setAuthName($this->randon);
-        // $this->test->setAuthEmail($this->email);
-        // $this->assertTrue($result == $this->test->register($this->test));
+        $this->test->setAuthFacebook($result);
+        $this->test->setAuthName($this->randon);
+        $this->test->setAuthEmail($this->email);
+        $this->test->setAuthPicture($this->randon);
+        $this->assertTrue($result == $this->test->register($this->test));
 
     }
 
