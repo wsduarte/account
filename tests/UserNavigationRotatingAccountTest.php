@@ -84,14 +84,68 @@ class UserNavigationRotatingAccountTest extends TestCase
     /**
      * @test
      */
-    // public function testClickLinkFacebookShouldRetrieveSeePageIsLogin()
-    // {
-    //
-    //     $this->visit('/')
-    //         ->click('Fazer login com o Facebook')
-    //         ->seePageIs('/oauth/autenticar/facebook');
-    //
-    // }
+    public function testShouldContainLinkAuthenticationLoginFacebook()
+    {
+
+        $this->visit('/')
+            ->see('/oauth/autenticar/facebook');
+
+    }
+
+    /**
+     * @test
+     */
+    public function testShouldContainLinkAuthenticationLoginGoogle()
+    {
+
+        $this->visit('/')
+            ->see('/oauth/autenticar/google');
+
+    }
+
+    /**
+     * @test
+     */
+    public function testShouldContainLinkAuthenticationLoginTwitter()
+    {
+
+        $this->visit('/')
+            ->see('/oauth/autenticar/twitter');
+
+    }
+
+    /**
+     * @test
+     */
+    public function testShouldContainLinkRegisterFacebook()
+    {
+
+        $this->visit('/registrar')
+            ->see('/oauth/registrar/facebook');
+
+    }
+
+    /**
+     * @test
+     */
+    public function testShouldContainLinkRegisterGoogle()
+    {
+
+        $this->visit('/registrar')
+            ->see('/oauth/registrar/google');
+
+    }
+
+    /**
+     * @test
+     */
+    public function testShouldContainLinkRegisterTwitter()
+    {
+
+        $this->visit('/registrar')
+            ->see('/oauth/registrar/twitter');
+
+    }
 
     /**
      * @test
