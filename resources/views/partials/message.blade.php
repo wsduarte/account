@@ -8,9 +8,11 @@
 
 </script>
 
-
 <div class="text-center error-flash">
     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
     <span>{{ Session::get('message') }}</span>
 </div>
+
+{{ Session::forget('message') }}
+
 @endif

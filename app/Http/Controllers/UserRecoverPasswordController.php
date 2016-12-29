@@ -34,7 +34,9 @@ class UserRecoverPasswordController extends Controller
 
         } catch (\Exception $e) {
 
-            echo $e->getMessage();
+            Session::put('message', $e->getMessage());
+            Session::put('recover_email', $request->input('email'));
+            return redirect()->route('recover');
 
         }
 

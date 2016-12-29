@@ -72,7 +72,7 @@ class UserRecoverPasswordRepositoryTest extends TestCase
     /**
      * @depends testShouldExistsThrowsInvalidArgumentExceptionForSetPassword
      */
-    public function testShouldInsertIntoEmailForMethodRecoverAndReturnBoolean()
+    public function testShouldInsertIntoEmailForMethodRecoverAndReturnSHA1()
     {
 
         if ($this->test instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
@@ -87,9 +87,13 @@ class UserRecoverPasswordRepositoryTest extends TestCase
             $this->assertTrue(is_numeric($id) ? True : False);
 
             $this->test->setEmail($this->email);
-            $this->test->setEmail($this->email);
             $result = $this->test->recover($this->test);
-            $this->assertTrue($result);
+
+            if (\App\Libs\Validate::isSha1($result)) {
+                $this->assertTrue(true);
+            } else {
+                $this->assertTrue(false);
+            }
 
         }
 

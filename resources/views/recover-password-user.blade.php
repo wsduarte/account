@@ -17,14 +17,19 @@
 
             </div>
 
+            @include('partials.message')
+
             {!! Form::open(['route' => 'recover.post', 'class' => 'form-recuperar_senha']) !!}
 
-                {{ Form::email('email', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu e-mail', 'required' => 'autofocus'] ) }}
+                {{ Form::email('email', Session::get('recover_email'), $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu e-mail', 'required' => 'autofocus'] ) }}
                 {{ Form::submit('Recuperar Senha', ['class' => 'btn btn-lg btn-primary btn-block']) }}
 
                 <a href="{{url('/')}}" rel="nofollow" class="pull-right need-voltar" title="Voltar para login">Voltar para login</a><span class="clearfix"></span>
 
             {!! Form::close() !!}
+
+
+            {{ Session::forget('recover_email') }}
 
         </div>
 

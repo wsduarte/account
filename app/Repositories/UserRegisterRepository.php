@@ -36,7 +36,7 @@ class UserRegisterRepository extends UserRegisterRepositoryAdapterAbstract
                 throw new \OverflowException(
                     sprintf(
                         \Config::get('constants.USER_IS_ALREADY_REGISTERED'),
-                        url('//login')
+                        route('login')
                     ), E_USER_WARNING
                 );
             }

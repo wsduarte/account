@@ -11,6 +11,8 @@
 
             <div class="text-center">Por favor preencha a sua nova senha abaixo.</div>
 
+            @include('partials.message')
+
             {!! Form::open(['route' => 'reset.password.post', 'class' => 'form-new-password']) !!}
 
                 {{ Form::hidden('tokenSHA1', $tokenSHA1 ) }}

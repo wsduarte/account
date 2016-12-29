@@ -1,5 +1,7 @@
 <?php
 
+use App\Repositories\Adapter\UserRecoverPasswordRepositoryAdapterAbstract;
+use App\Repositories\UserRegisterRepository;
 use App\Repositories\UserResetPasswordRepository;
 use App\Repositories\Adapter\UserResetPasswordRepositoryAdapterAbstract;
 
@@ -8,6 +10,7 @@ class UserResetPasswordRepositoryTest extends TestCase
 
     protected $test;
     protected $randon;
+    protected $email;
 
     /**
      * @test
@@ -99,18 +102,50 @@ class UserResetPasswordRepositoryTest extends TestCase
     }
 
     /**
-     * @depends testShouldRetrieveEqualsPasswordForSetPasswordEquals
+     * @expectedException        InvalidArgumentException
+     * @depends testShouldRetrieveThrowsInvalidArgumentExceptionSetPasswordEquals
      */
-    public function testShouldInsertIntoDataSendMailForMethodReset()
+    public function testShouldRetrieveThrowsInvalidArgumentExceptionToReset()
     {
 
         if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
 
-            $this->test->setToken(sha1($this->randon));
-            $this->test->setPassword($this->randon);
-            $this->test->setPasswordEquals($this->randon);
+            $this->test->setToken(sha1($this->randon))
+                ->setPassword($this->randon)
+                ->setPasswordEquals($this->randon);
+            $this->test->reset($this->test);
+
+        }
+
+    }
+
+    /**
+     * @depends testShouldRetrieveThrowsInvalidArgumentExceptionToReset
+     */
+    public function testShouldInsertNewPasswordForMethodReset()
+    {
+
+        $register = new \App\Repositories\UserRegisterRepository();
+        $id = $register->setName($this->randon)
+            ->setEmail($this->email)
+            ->setPassword($this->randon)
+            ->register($register);
+        $this->assertTrue(is_numeric($id) ? True : False);
+
+        $recover = new \App\Repositories\UserRecoverPasswordRepository();
+
+        if ($recover instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+
+            $recover->setEmail($this->email);
+            $token = $recover->recover($recover);
+
+        }
+
+        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+
+            $this->test->setToken($token);
             $result = $this->test->reset($this->test);
-            $this->assertEquals($this->randon, $result);
+            $this->assertTrue(true, $result);
 
         }
 

@@ -9,6 +9,8 @@
         <h1 class="text-center login-title">Criar conta Administrativa</h1>
         <div class="account-wall">
 
+            @include('partials.message')
+
             <div class="text-center register-user">
                 Cadastre-se com um destes serviços
             </div>

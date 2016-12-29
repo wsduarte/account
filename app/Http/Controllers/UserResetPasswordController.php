@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\Adapter\UserResetPasswordRepositoryAdapterAbstract;
 use App\Repositories\UserResetPasswordRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserResetPasswordController extends Controller
 {
@@ -26,10 +27,10 @@ class UserResetPasswordController extends Controller
             }
 
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            Session::put('message', $e->getMessage());
         }
 
-        array = [
+        $array = [
             'title' => 'Redefinição de senha',
             'description' => 'Entre com Login e Senha para acessar sua Conta, e gerencie sua Loja Virtual.',
             'tokenSHA1' => $request->route('token'),

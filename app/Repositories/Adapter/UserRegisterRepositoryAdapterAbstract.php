@@ -4,6 +4,7 @@ namespace App\Repositories\Adapter;
 
 use App\Contracts\UserRegisterRepositoryInterface;
 use App\Entity\UserEntityTrait;
+use App\Libs\Validate;
 use Respect\Validation\Validator as v;
 
 abstract class UserRegisterRepositoryAdapterAbstract implements UserRegisterRepositoryInterface
@@ -49,6 +50,13 @@ abstract class UserRegisterRepositoryAdapterAbstract implements UserRegisterRepo
      */
     public function setPassword($password)
     {
+
+        if (!Validate::isPasswd($password)) {
+            throw new \InvalidArgumentException(
+                \Config::get('constants.PASSWORD_IS_CURT'), E_USER_WARNING
+            );
+        }
+
         if(!v::stringType()->notEmpty()->validate($password)) {
             throw new \InvalidArgumentException(
                 \Config::get('constants.PLEASE_ENTER_PASSWORD_VALID'), E_USER_WARNING
@@ -72,6 +80,13 @@ abstract class UserRegisterRepositoryAdapterAbstract implements UserRegisterRepo
      */
     public function setPasswordEquals($password_equals)
     {
+
+        if (!Validate::isPasswd($password_equals)) {
+            throw new \InvalidArgumentException(
+                \Config::get('constants.PASSWORD_IS_CURT'), E_USER_WARNING
+            );
+        }
+
         $this->password_equals = $password_equals;
         if (!v::identical($this->password_equals)->validate($this->password)) {
 

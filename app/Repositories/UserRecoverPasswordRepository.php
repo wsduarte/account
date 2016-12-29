@@ -77,8 +77,9 @@ class UserRecoverPasswordRepository extends UserRecoverPasswordRepositoryAdapter
             $this->recover->email = $interface->getEmail();
             $this->recover->user_id = $result->id;
             $this->recover->token = $token;
+            $this->recover->save();
 
-            return $this->recover->save();
+            return $token;
 
         } catch (QueryException $e) {
             LogQueryException::get($e);
