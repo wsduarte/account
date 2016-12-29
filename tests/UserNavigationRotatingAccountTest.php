@@ -18,8 +18,8 @@ class UserNavigationRotatingAccountTest extends TestCase
     {
         parent::setUp();
         $this->test = new UserRegisterRepository();
-        $this->randon = str_random(10);
-        $this->email = str_random(10) .'@teste.com';
+        $this->randon = str_random(32);
+        $this->email = str_random(32) .'@teste.com';
 
     }
 
@@ -29,6 +29,36 @@ class UserNavigationRotatingAccountTest extends TestCase
              ->see('Entrar');
     }
 
+    /**
+     * @test
+     */
+    public function testRotatingLoginRegisterAccountUser()
+    {
+        $this->visit('/registrar')
+             ->see('Criar conta Administrativa');
+    }
+
+    /**
+     * @test
+     */
+    public function testRotatingUserRecoverPassword()
+    {
+        $this->visit('/recuperar-senha')
+             ->see('Esqueceu sua senha');
+    }
+
+    /**
+     * @test
+     */
+    public function testRotatingRecoverPasswordNotice()
+    {
+        $this->visit('/recuperar-senha/aviso')
+             ->see('Recuperação da senha solicitada');
+    }
+
+    /**
+     * @test
+     */
     public function testClickLinkShouldRetrieveSeePageIsRecoverPassword()
     {
 
@@ -39,7 +69,10 @@ class UserNavigationRotatingAccountTest extends TestCase
 
     }
 
-    public function testClickLinkShouldRetrieveSeePageIsLogin()
+    /**
+     * @test
+     */
+    public function testClickLinkBacktoLoginShouldRetrieveSeePageIsLogin()
     {
 
         $this->visit('/recuperar-senha')
@@ -48,6 +81,21 @@ class UserNavigationRotatingAccountTest extends TestCase
 
     }
 
+    /**
+     * @test
+     */
+    // public function testClickLinkFacebookShouldRetrieveSeePageIsLogin()
+    // {
+    //
+    //     $this->visit('/')
+    //         ->click('Fazer login com o Facebook')
+    //         ->seePageIs('/oauth/autenticar/facebook');
+    //
+    // }
+
+    /**
+     * @test
+     */
     public function testClickLinkShouldRetrieveSeePageIsRegister()
     {
 
@@ -59,23 +107,8 @@ class UserNavigationRotatingAccountTest extends TestCase
     }
 
     /**
-     * @depends testRotatingUserLogin
+     * @test
      */
-    public function testRotatingLoginRegisterAccountUser()
-    {
-        $this->visit('/registrar')
-             ->see('Cadastre-se com um destes serviços');
-    }
-
-    /**
-     * @depends testRotatingLoginRegisterAccountUser
-     */
-    public function testRotatingUserRecoverPassword()
-    {
-        $this->visit('/recuperar-senha')
-             ->see('Esqueceu sua senha');
-    }
-
     public function testRotatingWithUsernamePasswordViaPost()
     {
 
@@ -86,6 +119,9 @@ class UserNavigationRotatingAccountTest extends TestCase
 
     }
 
+    /**
+     * @test
+     */
     public function testClickLinkShouldRetrieveSeePageIsNotice()
     {
 
