@@ -13,6 +13,13 @@ use OAuth;
 class UserAuthenticateGoogleController extends Controller
 {
 
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UserAuthenticateGoogleRepository();
+    }
+
     public function authenticate(Request $request)
     {
 
@@ -35,16 +42,15 @@ class UserAuthenticateGoogleController extends Controller
                 // Send a request with it
                 $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
 
-                $repository = new UserAuthenticateGoogleRepository();
-                if ($repository instanceof UserAuthenticateGoogleRepositoryInterface) {
+                if ($this->repository instanceof UserAuthenticateGoogleRepositoryInterface) {
 
-                    $repository->setAuthGoogle($result['id']);
-                    $repository->setAuthEmail($result['email']);
-                    $repository->setAuthVerifiedEmail($result['verified_email']);
-                    $repository->setAuthName($result['name']);
-                    $repository->setAuthPicture($result['picture']);
+                    $this->repository->setAuthGoogle($result['id']);
+                    $this->repository->setAuthEmail($result['email']);
+                    $this->repository->setAuthVerifiedEmail($result['verified_email']);
+                    $this->repository->setAuthName($result['name']);
+                    $this->repository->setAuthPicture($result['picture']);
 
-                    $data = $repository->authenticate($repository);
+                    $data = $this->repository->authenticate($this->repository);
 
                     dd($data);
 

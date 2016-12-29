@@ -14,6 +14,13 @@ use OAuth;
 class UserRegisterFacebookController extends Controller
 {
 
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UserRegisterFacebookRepository();
+    }
+
     public function register(Request $request)
     {
 
@@ -36,17 +43,15 @@ class UserRegisterFacebookController extends Controller
                 // Send a request with it
                 $result = json_decode($fb->request('/me?locale=pt_BR&fields=id,name,email,gender,locale,link,age_range,cover,picture,timezone,updated_time'), true);
 
+                if ($this->repository instanceof UserRegisterFacebookRepositoryInterface) {
 
-                $repository = new UserRegisterFacebookRepository();
-                if ($repository instanceof UserRegisterFacebookRepositoryInterface) {
+                    $this->repository->setAuthFacebook($result['id']);
+                    $this->repository->setAuthEmail($result['email']);
+                    $this->repository->setAuthName($result['name']);
+                    $this->repository->setAuthPicture($result['picture']['data']['url']);
+                    $this->repository->setAuthUrlFacebook($result['link']);
 
-                    $repository->setAuthFacebook($result['id']);
-                    $repository->setAuthEmail($result['email']);
-                    $repository->setAuthName($result['name']);
-                    $repository->setAuthPicture($result['picture']['data']['url']);
-                    $repository->setAuthUrlFacebook($result['link']);
-
-                    $data = $repository->register($repository);
+                    $data = $this->repository->register($this->repository);
 
 //                    if (!is_array($data) && $data === false) {
 //                        Session::flash('message', \Config::get('constants.OAUTH_NOT_CONNECTED'));
@@ -77,7 +82,6 @@ class UserRegisterFacebookController extends Controller
             die($e->getMessage());
 
         }
-
 
     }
 

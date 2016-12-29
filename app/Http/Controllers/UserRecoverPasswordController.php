@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Session;
 class UserRecoverPasswordController extends Controller
 {
 
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UserRecoverPasswordRepository();
+    }
+
     public function recover()
     {
         $array = [
@@ -24,11 +31,9 @@ class UserRecoverPasswordController extends Controller
     {
         try {
 
-            $recover = new UserRecoverPasswordRepository();
-
-            if ($recover instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
-                $recover->setEmail($request->input('email'));
-                $recover->recover($recover);
+            if ($this->repository instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+                $this->repository->setEmail($request->input('email'));
+                $this->repository->recover($this->repository);
                 return redirect()->route('recover.notice');
             }
 

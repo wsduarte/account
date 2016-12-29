@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Session;
 class UserResetPasswordController extends Controller
 {
 
-    protected $reset;
+    protected $repository;
 
     public function __construct()
     {
-        $this->reset = new UserResetPasswordRepository();
+        $this->repository = new UserResetPasswordRepository();
     }
 
     public function reset(Request $request)
@@ -22,8 +22,8 @@ class UserResetPasswordController extends Controller
 
         try {
 
-            if ($this->reset instanceof UserResetPasswordRepositoryAdapterAbstract) {
-                $this->reset->setToken($request->route('token'));
+            if ($this->repository instanceof UserResetPasswordRepositoryAdapterAbstract) {
+                $this->repository->setToken($request->route('token'));
             }
 
         } catch (\Exception $e) {
@@ -44,8 +44,8 @@ class UserResetPasswordController extends Controller
 
         try {
 
-            if ($this->reset instanceof UserResetPasswordRepositoryAdapterAbstract) {
-                $this->reset->setToken($request->route('token'));
+            if ($this->repository instanceof UserResetPasswordRepositoryAdapterAbstract) {
+                $this->repository->setToken($request->route('token'));
             }
 
             echo $request->input('token');

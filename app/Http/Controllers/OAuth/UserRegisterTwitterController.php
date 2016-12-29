@@ -13,6 +13,13 @@ use OAuth;
 class UserRegisterTwitterController extends Controller
 {
 
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UserRegisterTwitterRepository();
+    }
+
     public function register(Request $request)
     {
 
@@ -36,18 +43,16 @@ class UserRegisterTwitterController extends Controller
                 // Send a request with it
                 $result = json_decode($tw->request('account/verify_credentials.json'), true);
 
-                $repository = new UserRegisterTwitterRepository();
-                if ($repository instanceof UserRegisterTwitterRepositoryInterface) {
+                if ($this->repository instanceof UserRegisterTwitterRepositoryInterface) {
 
-                    $repository->setAuthTwitter($result['id_str']);
-                    $repository->setAuthName($result['name']);
-                    $repository->setAuthPicture($result['profile_image_url']);
-                    $repository->setAuthBiography($result['description']);
-                    $repository->setAuthLocation($result['location']);
-                    $repository->setAuthSite($result['entities']['url']['urls']['0']['expanded_url']);
+                    $this->repository->setAuthTwitter($result['id_str']);
+                    $this->repository->setAuthName($result['name']);
+                    $this->repository->setAuthPicture($result['profile_image_url']);
+                    $this->repository->setAuthBiography($result['description']);
+                    $this->repository->setAuthLocation($result['location']);
+                    $this->repository->setAuthSite($result['entities']['url']['urls']['0']['expanded_url']);
 
-
-                    $data = $repository->register($repository);
+                    $data = $this->repository->register($this->repository);
 //                if (!is_array($data) && $data === false) {
 //                    Session::flash('message', \Config::get('constants.OAUTH_NOT_CONNECTED'));
 //                    return redirect((string) url('/'));

@@ -168,6 +168,7 @@ class UserNavigationRotatingAccountTest extends TestCase
 
         $this->visit('/')
             ->type('test@test.com', 'email')
+            ->type($this->randon, 'password')
             ->press('Fazer Login')
             ->see('O e-mail ou a senha inseridos estão incorretos.');
 

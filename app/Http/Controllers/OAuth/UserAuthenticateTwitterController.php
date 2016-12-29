@@ -13,6 +13,13 @@ use OAuth;
 class UserAuthenticateTwitterController extends Controller
 {
 
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UserAuthenticateTwitterRepository();
+    }
+
     public function authenticate(Request $request)
     {
 
@@ -36,18 +43,17 @@ class UserAuthenticateTwitterController extends Controller
                 // Send a request with it
                 $result = json_decode($tw->request('account/verify_credentials.json'), true);
 
-                $repository = new UserAuthenticateTwitterRepository();
-                if ($repository instanceof UserAuthenticateTwitterRepositoryInterface) {
+                if ($this->repository instanceof UserAuthenticateTwitterRepositoryInterface) {
 
-                    $repository->setAuthTwitter($result['id_str']);
-                    $repository->setAuthName($result['name']);
-                    $repository->setAuthPicture($result['profile_image_url']);
-                    $repository->setAuthBiography($result['description']);
-                    $repository->setAuthLocation($result['location']);
-                    $repository->setAuthSite($result['entities']['url']['urls']['0']['expanded_url']);
+                    $this->repository->setAuthTwitter($result['id_str']);
+                    $this->repository->setAuthName($result['name']);
+                    $this->repository->setAuthPicture($result['profile_image_url']);
+                    $this->repository->setAuthBiography($result['description']);
+                    $this->repository->setAuthLocation($result['location']);
+                    $this->repository->setAuthSite($result['entities']['url']['urls']['0']['expanded_url']);
 
 
-                    $data = $repository->authenticate($repository);
+                    $data = $this->repository->authenticate($this->repository);
 
                     dd($data);
     //                if (!is_array($data) && $data === false) {

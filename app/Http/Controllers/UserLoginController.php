@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 class UserLoginController extends Controller
 {
 
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UserAuthenticateRepository();
+    }
+
     public function index()
     {
         $array = [
@@ -28,12 +35,11 @@ class UserLoginController extends Controller
 
         try {
 
-            $login = new UserAuthenticateRepository();
-            if ($login instanceof UserAuthenticateRepositoryInterface) {
+            if ($this->repository instanceof UserAuthenticateRepositoryInterface) {
 
-                $login->setEmail($request->input('email'))
+                $this->repository->setEmail($request->input('email'))
                       ->setPassword($request->input('password'));
-                $login->autheticate($login);
+                $this->repository->autheticate($this->repository);
 
             }
 
