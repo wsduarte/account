@@ -43,7 +43,8 @@ class UserRecoverPasswordController extends Controller
     public function notice()
     {
         $array = [
-            'page' => 'Recuperação da senha solicitada'
+            'title' => 'Recuperação da senha solicitada',
+            'description' => 'Para finalizar a recuperação da senha você deve seguir os passos que estão no email recebido.',
         ];
         return view('recover-notice')->with($array);
     }

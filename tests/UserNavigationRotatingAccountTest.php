@@ -1,10 +1,27 @@
 <?php
 
+use App\Repositories\UserRegisterRepository;
+use App\Repositories\Adapter\UserRegisterRepositoryAdapterAbstract;
+
 class UserNavigationRotatingAccountTest extends TestCase
 {
 
-    protected $email_test = '__test@test.com';
-    protected $password_test = '12346587910';
+
+    protected $test;
+    protected $randon;
+    protected $email;
+
+    /**
+     * @test
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->test = new UserRegisterRepository();
+        $this->randon = str_random(10);
+        $this->email = str_random(10) .'@teste.com';
+
+    }
 
     public function testRotatingUserLogin()
     {
@@ -17,7 +34,8 @@ class UserNavigationRotatingAccountTest extends TestCase
 
         $this->visit('/')
             ->click('Esqueceu sua senha?')
-            ->seePageIs('/recuperar-senha');
+            ->seePageIs('/recuperar-senha')
+            ->see('Esqueceu sua senha?');
 
     }
 
@@ -35,7 +53,8 @@ class UserNavigationRotatingAccountTest extends TestCase
 
         $this->visit('/')
             ->click('Crie Agora, é Grátis!')
-            ->seePageIs('/registrar');
+            ->seePageIs('/registrar')
+            ->see('Cadastre-se com um destes serviços');
 
     }
 
@@ -45,7 +64,7 @@ class UserNavigationRotatingAccountTest extends TestCase
     public function testRotatingLoginRegisterAccountUser()
     {
         $this->visit('/registrar')
-             ->see('Cadastre-se');
+             ->see('Cadastre-se com um destes serviços');
     }
 
     /**
@@ -67,14 +86,20 @@ class UserNavigationRotatingAccountTest extends TestCase
 
     }
 
-    public function testRecoverPasswordByEmail()
+    public function testClickLinkShouldRetrieveSeePageIsNotice()
     {
-        # code...
-    }
 
-    public function testRegisterNewPasswordCommingByEmail()
-    {
-        # code...
+        $this->test->setName($this->randon)
+             ->setEmail($this->email)
+             ->setPassword($this->randon)
+             ->register($this->test);
+
+        $this->visit('/recuperar-senha')
+            ->type($this->email, 'email')
+            ->press('Recuperar Senha')
+            ->seePageIs('/recuperar-senha/aviso')
+            ->see('Recuperação da senha solicitada');
+
     }
 
 }
