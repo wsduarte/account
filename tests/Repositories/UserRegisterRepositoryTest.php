@@ -29,7 +29,7 @@ class UserRegisterRepositoryTest extends TestCase
         }
 
         $this->randon = str_random(10);
-        $this->email = str_random(10) .'@depends.com';
+        $this->email = str_random(10) .'@teste.com';
 
     }
 

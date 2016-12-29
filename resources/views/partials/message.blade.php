@@ -1,5 +1,15 @@
 @if(Session::has('message'))
-<div class="text-center error-login">
+
+<script>
+
+    setTimeout(function() {
+        $('.error-flash').fadeOut('fast');
+    }, 6000);
+
+</script>
+
+
+<div class="text-center error-flash">
     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
     <span>{{ Session::get('message') }}</span>
 </div>

@@ -13,4 +13,27 @@ class UserSessions
         Session::put('nome', $data['nome']);
     }
 
+    public function FunctionName($value='')
+    {
+
+
+
+        /*
+                echo Session::get('id'); // gets age from session
+                echo "<br >";
+                echo Session::get('nome'); // gets age from session
+                echo "<br >";
+                echo $request->session()->get('nome'); // gets age from session
+                echo "<br >";
+                echo $request->session()->get('id'); // gets age from session
+                echo "<br >";
+
+                */
+
+
+        //        Session::put('nome');
+        //        echo '<br />';
+        //        echo Session::get('id');
+    }
+
 }

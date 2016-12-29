@@ -2,64 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\UserAuthenticateRepositoryInterface;
+use App\Repositories\UserAuthenticateRepository;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
 
 class UserLoginController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
-        $page = 'Fazer Login';
         $array = [
-            'page' => $page
+            'title' => 'Fazer Login',
+            'description' => 'Entre com Login e Senha para acessar sua Conta, e gerencie sua Loja Virtual.',
         ];
-
-
-
-/*
-        echo Session::get('id'); // gets age from session
-        echo "<br >";
-        echo Session::get('nome'); // gets age from session
-        echo "<br >";
-        echo $request->session()->get('nome'); // gets age from session
-        echo "<br >";
-        echo $request->session()->get('id'); // gets age from session
-        echo "<br >";
-
-        */
-
-
-//        Session::put('nome');
-//        echo '<br />';
-//        echo Session::get('id');
-
         return view('login-user')->with($array);
 
     }
-
 
     /**
      * @param Request $request
      * @return array|string
      */
-    public function authenticate(Request $request)
+    public function getPostAuthenticate(Request $request)
     {
 
-        $page = 'Redirecionando você aguarde!!!';
-        $url = 'http://app.vialoja.com.br/admin';
-        $array = array(
-            'page' => $page,
-            'url' => $url
-        );
-        //https://laracasts.com/discuss/channels/general-discussion/laravel-5-referrer-url
+        try {
 
-        if ($request->input('_test') === true) {
-            return $page;
+            $login = new UserAuthenticateRepository();
+            if ($login instanceof UserAuthenticateRepositoryInterface) {
+
+                $login->setEmail($request->input('email'))
+                      ->setPassword($request->input('password'));
+                $login->autheticate($login);
+
+            }
+
+            return redirect()->route('/admin');
+
+        } catch (\Exception $e) {
+
+            $request->session()->flash('message', $e->getMessage());
+            return redirect()->route('login');
+
         }
 
-        return view('redirect-register')->with($array);
+
+//        $page = 'Redirecionando você aguarde!!!';
+//        $url = 'http://app.vialoja.com.br/admin';
+//        $array = array(
+//            'page' => $page,
+//            'url' => $url
+//        );
+//        //https://laracasts.com/discuss/channels/general-discussion/laravel-5-referrer-url
+//
+//        if ($request->input('_test') === true) {
+//            return $page;
+//        }
+//
+//        return view('redirect-register')->with($array);
 
     }
 

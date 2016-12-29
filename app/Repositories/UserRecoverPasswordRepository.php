@@ -9,6 +9,7 @@ use App\Libs\Tools;
 use App\Repositories\Adapter\UserRecoverPasswordRepositoryAdapterAbstract;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Class UserRecoverPasswordRepository
@@ -58,6 +59,8 @@ class UserRecoverPasswordRepository extends UserRecoverPasswordRepositoryAdapter
                 'link' => $recover_link,
                 'issued' => Tools::issuedDate(),
             ];
+
+            Session::put('email_recover', $recover_email);
 
             $send = \Mail::send('email.recover-password',$data, function ($message) use ($recover_email,$recover_subject){
                 $message->from(\Config::get('mail.from.contact'))

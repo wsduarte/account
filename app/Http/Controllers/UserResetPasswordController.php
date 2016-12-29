@@ -29,10 +29,10 @@ class UserResetPasswordController extends Controller
             echo $e->getMessage();
         }
 
-        $page = 'Redefinição de senha';
-        $array = [
-            'page' => $page,
-            'tokenSHA1' => $request->route('token')
+        array = [
+            'title' => 'Redefinição de senha',
+            'description' => 'Entre com Login e Senha para acessar sua Conta, e gerencie sua Loja Virtual.',
+            'tokenSHA1' => $request->route('token'),
         ];
 
         return view('reset-password-user')->with($array);

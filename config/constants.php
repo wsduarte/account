@@ -15,7 +15,7 @@ return [
     'PLEASE_ENTER_EMAIL_VALID' => 'Por favor, informe seu email corretamente.',
     'PLEASE_EMAIL_EMPTY_RECOVER' => 'Informe o email cadastrado.',
     'USER_IS_ALREADY_REGISTERED' => 'Este usuário já encontra-se cadastrado. Experiemente fazer <a href="%s">Login</a>',
-    'USER_IS_NOT_REGISTERED' => 'Nenhuma conta foi encontrada com esse endereço de e-mail.',
+    'USER_IS_NOT_REGISTERED' => 'O e-mail inserido não foi encontrado. Verifique se o e-mail foi digitado corretamente.',
     'ERROR_PROCESS' => 'A OPERAÇÃO NÃO FOI CONCLUÍDA. Ocorreu um erro durante o processamento de sua solicitação. Por favor, tente novamente mais tarde.',
 
 ];

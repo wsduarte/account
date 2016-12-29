@@ -17,7 +17,7 @@ class UserRegisterGoogleRepositoryTest extends TestCase
         parent::setUp();
         $this->test = new UserRegisterGoogleRepository();
         $this->randon = str_random(10);
-        $this->email = str_random(10) .'@depends.com';
+        $this->email = str_random(10) .'@test.com';
     }
 
     /**

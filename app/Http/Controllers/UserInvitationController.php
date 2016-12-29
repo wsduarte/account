@@ -11,9 +11,10 @@ class UserInvitationController extends Controller
 
     public function accept()
     {
-        $page = 'Criar conta gerenciar Loja Virtual';
+
         $array = [
-            'page' => $page
+            'title' => 'Criar conta gerenciar Loja Virtual',
+            'description' => 'Entre com Login e Senha para acessar sua Conta, e gerencie sua Loja Virtual.',
         ];
 
         return view('invitation-user')->with($array);

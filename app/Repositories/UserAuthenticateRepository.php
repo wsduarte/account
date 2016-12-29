@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Adapter\UserLogLoginAllRepositoryAbstract;
 use Respect\Validation\Validator as v;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;

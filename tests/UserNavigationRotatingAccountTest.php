@@ -1,12 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Routing\Route;
-use Illuminate\Routing\RouteCollection;
-
 class UserNavigationRotatingAccountTest extends TestCase
 {
 
@@ -17,6 +10,33 @@ class UserNavigationRotatingAccountTest extends TestCase
     {
         $this->visit('/')
              ->see('Entrar');
+    }
+
+    public function testClickLinkShouldRetrieveSeePageIsRecoverPassword()
+    {
+
+        $this->visit('/')
+            ->click('Esqueceu sua senha?')
+            ->seePageIs('/recuperar-senha');
+
+    }
+
+    public function testClickLinkShouldRetrieveSeePageIsLogin()
+    {
+
+        $this->visit('/recuperar-senha')
+            ->click('Voltar para login')
+            ->seePageIs('/');
+
+    }
+
+    public function testClickLinkShouldRetrieveSeePageIsRegister()
+    {
+
+        $this->visit('/')
+            ->click('Crie Agora, é Grátis!')
+            ->seePageIs('/registrar');
+
     }
 
     /**
@@ -40,16 +60,10 @@ class UserNavigationRotatingAccountTest extends TestCase
     public function testRotatingWithUsernamePasswordViaPost()
     {
 
-        $credentials = array(
-	        'email' => $this->email_test,
-	        'password' => $this->password_test,
-	        '_test' => true,
-	        '_token' => Session::token()
-        );
-
-    	$response = $this->call('POST', '/autenticar', $credentials);
-    	$content = $response->getContent();
-        $this->assertContains('Redirecionando',$content);
+        $this->visit('/')
+            ->type('test@test.com', 'email')
+            ->press('Fazer Login')
+            ->see('O e-mail ou a senha inseridos estão incorretos.');
 
     }
 
