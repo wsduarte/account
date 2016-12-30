@@ -53,6 +53,7 @@ class UserAuthenticateTwitterController extends Controller
                     $this->repository->setAuthSite($result['entities']['url']['urls']['0']['expanded_url']);
 
                     $data = $this->repository->authenticate($this->repository);
+
                     $request->session()->put('url_redirect', 'https://www.facebook.com/');
                     //dd($data);
     //                if (!is_array($data) && $data === false) {

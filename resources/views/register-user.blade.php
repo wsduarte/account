@@ -22,7 +22,7 @@
 
             {!! Form::open(['route' => 'register.post', 'class' => 'form-signin']) !!}
 
-                {{ Form::text('name', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu nome completo', 'required' => 'autofocus'] ) }}
+                {{ Form::text('name', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu nome completo', 'pattern'=> '.{2,}', 'required title' => '2 caracteres no mínimo.'] ) }}
                 {{ Form::email('email', $value = null, $attributes = ['class' => 'form-control input-register-email', 'placeholder' => 'Informe seu e-mail', 'required' => 'autofocus'] ) }}
                 {{ Form::password('password', ['class' => 'form-control input-register-password-up', 'placeholder' => 'Nova Senha', 'pattern'=> '.{6,}', 'required title' => '6 caracteres no mínimo.'] ) }}
                 {{ Form::password('confirm', ['class' => 'form-control input-register-confirm','placeholder' => 'Confirme a nova senha', 'pattern'=> '.{6,15}', 'required title' => 'Deve conter entre 6 a 15 caracteres.']) }}

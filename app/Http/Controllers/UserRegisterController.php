@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\UserRegisterRepository;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 
 class UserRegisterController extends Controller
 {
@@ -27,7 +28,7 @@ class UserRegisterController extends Controller
         return view('register-user')->with($array);
     }
 
-    public function getPostRegister(Request $request)
+    public function getPostRegister(RegisterRequest $request)
     {
         try {
 

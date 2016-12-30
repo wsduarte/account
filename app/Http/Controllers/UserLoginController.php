@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\UserAuthenticateRepositoryInterface;
 use App\Repositories\UserAuthenticateRepository;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 
 class UserLoginController extends Controller
 {
@@ -30,7 +31,7 @@ class UserLoginController extends Controller
      * @param Request $request
      * @return array|string
      */
-    public function getPostAuthenticate(Request $request)
+    public function getPostAuthenticate(LoginRequest $request)
     {
 
         try {

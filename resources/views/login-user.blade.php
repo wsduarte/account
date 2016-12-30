@@ -27,7 +27,7 @@
                 {{ Form::email('email', $value = null, $attributes = ['class' => 'form-control', 'placeholder' => 'Informe seu e-mail', 'required' => 'autofocus'] ) }}
                 {{ Form::password('password', ['class' => 'form-control input-new-password-up', 'placeholder' => 'Informe sua senha', 'pattern'=> '.{6,}', 'required title' => '6 caracteres no mínimo.'] ) }}
                 {{ Form::submit('Fazer Login', ['class' => 'btn btn-lg btn-primary btn-block']) }}
-                
+
                 <a href="{{ route('recover') }}" class="pull-right need-help">Esqueceu sua senha?</a><span class="clearfix"></span>
 
             {!! Form::close() !!}

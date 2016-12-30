@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Sessions\Subdomains\App\Account;
+namespace App\Sessions;
 
 use Illuminate\Support\Facades\Session;
 
-class UserSessions
+class Sessions
 {
 
     public static function create($data)
