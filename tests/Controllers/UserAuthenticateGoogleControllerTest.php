@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\OAuth\UserAuthenticateGoogleController;
+use App\Http\Controllers\OAuth\AuthenticateGoogleController;
 
-class UserAuthenticateGoogleControllerTest extends TestCase
+class AuthenticateGoogleControllerTest extends TestCase
 {
 
     /**
@@ -10,7 +10,7 @@ class UserAuthenticateGoogleControllerTest extends TestCase
      */
     public function testShouldExistMethodAuthenticateInControlleGoogle()
     {
-        $class = new UserAuthenticateGoogleController();
+        $class = new AuthenticateGoogleController();
         $this->assertFalse(
             !method_exists( $class,'authenticate') ? True : False
         );

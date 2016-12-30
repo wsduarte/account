@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\OAuth\UserAuthenticateTwitterController;
+use App\Http\Controllers\OAuth\AuthenticateTwitterController;
 
-class UserAuthenticateTwitterControllerTest extends TestCase
+class AuthenticateTwitterControllerTest extends TestCase
 {
 
     /**
@@ -11,7 +11,7 @@ class UserAuthenticateTwitterControllerTest extends TestCase
     public function testShouldExistMethodAuthenticateInControlleTwitter()
     {
 
-        $class = new UserAuthenticateTwitterController();
+        $class = new AuthenticateTwitterController();
         $this->assertFalse(
             !method_exists( $class,'authenticate') ? True : False
         );

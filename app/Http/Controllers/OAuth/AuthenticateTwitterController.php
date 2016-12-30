@@ -10,7 +10,7 @@ use App\Sessions\Subdomains\App\Account\UserSessions;
 use Illuminate\Support\Facades\Session;
 use OAuth;
 
-class UserAuthenticateTwitterController extends Controller
+class AuthenticateTwitterController extends Controller
 {
 
     protected $repository;

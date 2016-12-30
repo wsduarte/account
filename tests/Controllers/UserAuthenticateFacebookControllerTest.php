@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\OAuth\UserAuthenticateFacebookController;
+use App\Http\Controllers\OAuth\AuthenticateFacebookController;
 
-class UserAuthenticateFacebookControllerTest extends TestCase
+class AuthenticateFacebookControllerTest extends TestCase
 {
 
     /**
@@ -10,7 +10,7 @@ class UserAuthenticateFacebookControllerTest extends TestCase
      */
     public function testShouldExistMethodAuthenticateInControllerFacebook()
     {
-        $class = new UserAuthenticateFacebookController();
+        $class = new AuthenticateFacebookController();
         $this->assertFalse(
             !method_exists( $class,'authenticate') ? True : False
         );

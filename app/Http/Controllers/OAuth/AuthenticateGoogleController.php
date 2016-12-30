@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Contracts\UserRegisterGoogleRepositoryInterface;
-use App\Http\Controllers\Controller;
-use App\Repositories\UserRegisterGoogleRepository;
+use App\Contracts\UserAuthenticateGoogleRepositoryInterface;
+use App\Repositories\UserAuthenticateGoogleRepository;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Sessions\Subdomains\App\Account\UserSessions;
 use Illuminate\Support\Facades\Session;
 use OAuth;
 
-
-class UserRegisterGoogleController extends Controller
+class AuthenticateGoogleController extends Controller
 {
 
     protected $repository;
 
     public function __construct()
     {
-        $this->repository = new UserRegisterGoogleRepository();
+        $this->repository = new UserAuthenticateGoogleRepository();
     }
 
-    public function register(Request $request)
+    public function authenticate(Request $request)
     {
 
         try {
@@ -42,7 +42,7 @@ class UserRegisterGoogleController extends Controller
                 // Send a request with it
                 $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
 
-                if ($this->repository instanceof UserRegisterGoogleRepositoryInterface) {
+                if ($this->repository instanceof UserAuthenticateGoogleRepositoryInterface) {
 
                     $this->repository->setAuthGoogle($result['id']);
                     $this->repository->setAuthEmail($result['email']);
@@ -50,16 +50,19 @@ class UserRegisterGoogleController extends Controller
                     $this->repository->setAuthName($result['name']);
                     $this->repository->setAuthPicture($result['picture']);
 
-                    $data = $this->repository->register($this->repository);
+                    $data = $this->repository->authenticate($this->repository);
+
+                    //dd($data);
 
 
 //                if (!is_array($data) && $data === false) {
-//                    Session::flash('message', \Config::get('constants.OAUTH_NOT_CONNECTED'));
+//                    Session::flash('message', Config::get('constants.OAUTH_NOT_CONNECTED'));
 //                    return redirect((string) url('/'));
 //                } else {
 //                    UserSessions::create($data);
 //                    return redirect((string) url('/'));
 //                }
+
                     return redirect()->route('redirect.login');
 
                 }
@@ -72,13 +75,12 @@ class UserRegisterGoogleController extends Controller
                 $url = $googleService->getAuthorizationUri();
 
                 if ($request->input('error') == 'access_denied') {
-                    Session::flash('message', \Config::get('constants.OAUTH_DENIED'));
+                    Session::flash('message', Config::get('constants.OAUTH_DENIED'));
                     return redirect((string) url('/'));
                 }
                 // return to google login url
                 return redirect((string)$url);
             }
-
 
         } catch (\Exception $e) {
 

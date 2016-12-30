@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\OAuth\UserRegisterFacebookController;
+use App\Http\Controllers\OAuth\RegisterFacebookController;
 
-class UserRegisterFacebookControllerTest extends TestCase
+class RegisterFacebookControllerTest extends TestCase
 {
 
     /**
@@ -10,7 +10,7 @@ class UserRegisterFacebookControllerTest extends TestCase
      */
     public function testShouldExistMethodRegisterInControllerFacebook()
     {
-        $class = new UserRegisterFacebookController();
+        $class = new RegisterFacebookController();
         $this->assertFalse(
             !method_exists( $class,'register') ? True : False
         );

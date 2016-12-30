@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\OAuth\UserRegisterGoogleController;
+use App\Http\Controllers\OAuth\RegisterGoogleController;
 
-class UserRegisterGoogleControllerTest extends TestCase
+class RegisterGoogleControllerTest extends TestCase
 {
 
     /**
@@ -10,7 +10,7 @@ class UserRegisterGoogleControllerTest extends TestCase
      */
     public function testShouldExistMethodRegisterInControllerGoogle()
     {
-        $class = new UserRegisterGoogleController();
+        $class = new RegisterGoogleController();
         $this->assertFalse(
             !method_exists( $class,'register') ? True : False
         );
