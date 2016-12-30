@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\UserRegisterRepository;
+use App\Repositories\RegisterRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 
@@ -13,7 +13,7 @@ class RegisterController extends Controller
 
     public function __construct()
     {
-        $this->repository = new UserRegisterRepository();
+        $this->repository = new RegisterRepository();
     }
 
 

@@ -1,7 +1,7 @@
 <?php
 
 use App\Repositories\UserRecoverPasswordRepository;
-use App\Repositories\Adapter\UserRecoverPasswordRepositoryAdapterAbstract;
+use App\Repositories\Adapter\RecoverPasswordRepositoryAdapterAbstract;
 
 class UserRecoverPasswordRepositoryTest extends TestCase
 {
@@ -27,7 +27,7 @@ class UserRecoverPasswordRepositoryTest extends TestCase
     public function testShouldRetrieveIDForSetId()
     {
 
-        if ($this->test instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof RecoverPasswordRepositoryAdapterAbstract) {
 
             $id = time();
             $this->test->setId($id);
@@ -43,7 +43,7 @@ class UserRecoverPasswordRepositoryTest extends TestCase
     public function testShouldRetrieveEmailForSetEmail()
     {
 
-        if ($this->test instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof RecoverPasswordRepositoryAdapterAbstract) {
 
             $this->test->setEmail($this->email);
             $this->assertEquals($this->email, $this->test->getEmail());
@@ -60,7 +60,7 @@ class UserRecoverPasswordRepositoryTest extends TestCase
     public function testShouldExistsThrowsInvalidArgumentExceptionForSetPassword()
     {
 
-        if ($this->test instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof RecoverPasswordRepositoryAdapterAbstract) {
 
             $this->test->setEmail($this->email);
             $this->test->recover($this->test);
@@ -75,10 +75,10 @@ class UserRecoverPasswordRepositoryTest extends TestCase
     public function testShouldInsertIntoEmailForMethodRecoverAndReturnSHA1()
     {
 
-        if ($this->test instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof RecoverPasswordRepositoryAdapterAbstract) {
 
 
-            $register = new \App\Repositories\UserRegisterRepository();
+            $register = new \App\Repositories\RegisterRepository();
 
             $id = $register->setName($this->randon)
                 ->setEmail($this->email)

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\UserAuthenticateRepositoryInterface;
-use App\Repositories\UserAuthenticateRepository;
+use App\Contracts\AuthenticateRepositoryInterface;
+use App\Repositories\AuthenticateRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 
@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->repository = new UserAuthenticateRepository();
+        $this->repository = new AuthenticateRepository();
     }
 
     public function index()
@@ -36,7 +36,7 @@ class LoginController extends Controller
 
         try {
 
-            if ($this->repository instanceof UserAuthenticateRepositoryInterface) {
+            if ($this->repository instanceof AuthenticateRepositoryInterface) {
 
                 $this->repository->setEmail($request->input('email'))
                       ->setPassword($request->input('password'));

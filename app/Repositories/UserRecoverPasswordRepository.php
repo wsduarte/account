@@ -6,7 +6,7 @@ use App\User;
 use App\UserRecoverPassword;
 use App\Exceptions\LogQueryException;
 use App\Libs\Tools;
-use App\Repositories\Adapter\UserRecoverPasswordRepositoryAdapterAbstract;
+use App\Repositories\Adapter\RecoverPasswordRepositoryAdapterAbstract;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Session;
  * Class UserRecoverPasswordRepository
  * @package App\Repositories
  */
-class UserRecoverPasswordRepository extends UserRecoverPasswordRepositoryAdapterAbstract
+class UserRecoverPasswordRepository extends RecoverPasswordRepositoryAdapterAbstract
 {
 
     protected $user;
@@ -29,10 +29,10 @@ class UserRecoverPasswordRepository extends UserRecoverPasswordRepositoryAdapter
 
     /**
      * Registra solicitação
-     * @param UserRecoverPasswordRepositoryAdapterAbstract $interface
+     * @param RecoverPasswordRepositoryAdapterAbstract $interface
      * @return bool
      */
-    public function recover(UserRecoverPasswordRepositoryAdapterAbstract $interface)
+    public function recover(RecoverPasswordRepositoryAdapterAbstract $interface)
     {
 
         try {

@@ -33,17 +33,17 @@ Route::group(['prefix' => 'oauth'], function() {
 
     Route::group(['prefix' => 'autenticar'], function() {
         /** OAuth 2.0 **/
-        Route::get('facebook', ['as' => 'oauth.authenticate.facebook', 'uses' => 'OAuth\UserAuthenticateFacebookController@authenticate']);
-        Route::get('google', ['as' => 'oauth.authenticate.google', 'uses' => 'OAuth\UserAuthenticateGoogleController@authenticate']);
-        Route::get('twitter', ['as' => 'oauth.authenticate.twitter', 'uses' => 'OAuth\UserAuthenticateTwitterController@authenticate']);
+        Route::get('facebook', ['as' => 'oauth.authenticate.facebook', 'uses' => 'OAuth\AuthenticateFacebookController@authenticate']);
+        Route::get('google', ['as' => 'oauth.authenticate.google', 'uses' => 'OAuth\AuthenticateGoogleController@authenticate']);
+        Route::get('twitter', ['as' => 'oauth.authenticate.twitter', 'uses' => 'OAuth\AuthenticateTwitterController@authenticate']);
 
     });
 
     Route::group(['prefix' => 'registrar'], function() {
         /** OAuth 2.0 **/
-        Route::get('facebook', ['as' => 'oauth.register.facebook', 'uses' => 'OAuth\UserRegisterFacebookController@register']);
-        Route::get('google', ['as' => 'oauth.register.google', 'uses' => 'OAuth\UserRegisterGoogleController@register']);
-        Route::get('twitter', ['as' => 'oauth.register.twitter', 'uses' => 'OAuth\UserRegisterTwitterController@register']);
+        Route::get('facebook', ['as' => 'oauth.register.facebook', 'uses' => 'OAuth\RegisterFacebookController@register']);
+        Route::get('google', ['as' => 'oauth.register.google', 'uses' => 'OAuth\RegisterGoogleController@register']);
+        Route::get('twitter', ['as' => 'oauth.register.twitter', 'uses' => 'OAuth\RegisterTwitterController@register']);
 
     });
 

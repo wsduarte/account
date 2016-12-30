@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Adapter\UserRecoverPasswordRepositoryAdapterAbstract;
+use App\Repositories\Adapter\RecoverPasswordRepositoryAdapterAbstract;
 use App\Repositories\UserRecoverPasswordRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -31,7 +31,7 @@ class RecoverPasswordController extends Controller
     {
         try {
 
-            if ($this->repository instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+            if ($this->repository instanceof RecoverPasswordRepositoryAdapterAbstract) {
                 $this->repository->setEmail($request->input('email'));
                 $this->repository->recover($this->repository);
                 return redirect()->route('recover.notice');
