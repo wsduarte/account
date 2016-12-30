@@ -81,7 +81,8 @@ class UserAuthenticateGoogleController extends Controller
 
         } catch (\Exception $e) {
 
-            die($e->getMessage());
+            Session::put('message', $e->getMessage());
+            return redirect()->route('login');
 
         }
 

@@ -12,10 +12,7 @@ class UserRegisterController extends Controller
 
     public function __construct()
     {
-
         $this->repository = new UserRegisterRepository();
-
-
     }
 
 
