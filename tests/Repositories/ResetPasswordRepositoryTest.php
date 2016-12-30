@@ -1,6 +1,6 @@
 <?php
 
-use App\Repositories\Adapter\UserRecoverPasswordRepositoryAdapterAbstract;
+use App\Repositories\Adapter\RecoverPasswordRepositoryAdapterAbstract;
 use App\Repositories\RegisterRepository;
 use App\Repositories\ResetPasswordRepository;
 use App\Repositories\Adapter\ResetPasswordRepositoryAdapterAbstract;
@@ -134,7 +134,7 @@ class ResetPasswordRepositoryTest extends TestCase
 
         $recover = new \App\Repositories\UserRecoverPasswordRepository();
 
-        if ($recover instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
+        if ($recover instanceof RecoverPasswordRepositoryAdapterAbstract) {
 
             $recover->setEmail($this->email);
             $token = $recover->recover($recover);

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Adapter;
 
-abstract class UserOAuthQueryFindByIdApaterAbstract
+abstract class OAuthQueryFindByIdApaterAbstract
 {
     abstract public function findByIdOAuth($id);
 }

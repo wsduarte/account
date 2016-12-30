@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\UserOAuthGoogle;
 
-class UserOAuthGoogleQueryFindByIdAdapterFixed extends UserOAuthQueryFindByIdApaterAbstract
+class OAuthGoogleQueryFindByIdAdapterFixed extends OAuthQueryFindByIdApaterAbstract
 {
 
     public function findByIdOAuth($id)

@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\Contracts\RegisterGoogleRepositoryInterface;
 use App\Entity\UserOAuthGoogleEntityTrait;
-use App\Repositories\Adapter\UserOAuthGoogleQueryFindByIdAdapterFixed;
+use App\Repositories\Adapter\OAuthGoogleQueryFindByIdAdapterFixed;
 use App\UserOAuthGoogle;
 use App\User;
 
@@ -25,7 +25,7 @@ class RegisterGoogleRepository implements RegisterGoogleRepositoryInterface
 
     public function __construct()
     {
-        $this->check = new UserOAuthGoogleQueryFindByIdAdapterFixed();
+        $this->check = new OAuthGoogleQueryFindByIdAdapterFixed();
         $this->auth = new UserOAuthGoogle();
         $this->user = new User();
     }

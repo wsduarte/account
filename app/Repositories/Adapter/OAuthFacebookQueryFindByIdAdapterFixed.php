@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\UserOAuthFacebook;
 
-class UserOAuthFacebookQueryFindByIdAdapterFixed extends UserOAuthQueryFindByIdApaterAbstract
+class OAuthFacebookQueryFindByIdAdapterFixed extends OAuthQueryFindByIdApaterAbstract
 {
 
     public function findByIdOAuth($id)

@@ -7,7 +7,7 @@ use App\Exceptions\LogQueryException;
 use App\User;
 use App\Contracts\RegisterTwitterRepositoryInterface;
 use App\Entity\UserOAuthTwitterEntityTrait;
-use App\Repositories\Adapter\UserOAuthTwitterQueryFindByIdAdapterFixed;
+use App\Repositories\Adapter\OAuthTwitterQueryFindByIdAdapterFixed;
 use App\UserOAuthTwitter;
 
 
@@ -26,7 +26,7 @@ class RegisterTwitterRepository implements RegisterTwitterRepositoryInterface
 
     public function __construct()
     {
-        $this->check = new UserOAuthTwitterQueryFindByIdAdapterFixed();
+        $this->check = new OAuthTwitterQueryFindByIdAdapterFixed();
         $this->auth = new UserOAuthTwitter();
         $this->user = new User();
     }

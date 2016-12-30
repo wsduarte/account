@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\Contracts\AuthenticateFacebookRepositoryInterface;
 use App\Entity\UserOAuthFacebookEntityTrait;
-use App\Repositories\Adapter\UserOAuthFacebookQueryFindByIdAdapterFixed;
+use App\Repositories\Adapter\OAuthFacebookQueryFindByIdAdapterFixed;
 use App\UserOAuthFacebook;
 use App\Repositories\Adapter\UserLogLoginAllRepositoryAbstract;
 
@@ -21,7 +21,7 @@ class AuthenticateFacebookRepository implements AuthenticateFacebookRepositoryIn
 
     public function __construct()
     {
-        $this->check = new UserOAuthFacebookQueryFindByIdAdapterFixed();
+        $this->check = new OAuthFacebookQueryFindByIdAdapterFixed();
         $this->auth = new UserOAuthFacebook();
         $this->log = new UserLogLoginAllRepository;
     }

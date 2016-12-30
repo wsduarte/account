@@ -7,7 +7,7 @@ use App\Exceptions\LogQueryException;
 use App\User;
 use App\Contracts\RegisterFacebookRepositoryInterface;
 use App\Entity\UserOAuthFacebookEntityTrait;
-use App\Repositories\Adapter\UserOAuthFacebookQueryFindByIdAdapterFixed;
+use App\Repositories\Adapter\OAuthFacebookQueryFindByIdAdapterFixed;
 use App\UserOAuthFacebook;
 
 /**
@@ -25,7 +25,7 @@ class RegisterFacebookRepository implements RegisterFacebookRepositoryInterface
 
     public function __construct()
     {
-        $this->check = new UserOAuthFacebookQueryFindByIdAdapterFixed();
+        $this->check = new OAuthFacebookQueryFindByIdAdapterFixed();
         $this->auth = new UserOAuthFacebook();
         $this->user = new User();
     }

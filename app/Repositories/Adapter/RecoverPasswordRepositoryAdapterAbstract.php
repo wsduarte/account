@@ -7,7 +7,7 @@ use App\Entity\UserEntityTrait;
 use Respect\Validation\Validator as v;
 
 
-abstract class UserRecoverPasswordRepositoryAdapterAbstract implements UserEntityForUseContractsTrait
+abstract class RecoverPasswordRepositoryAdapterAbstract implements UserEntityForUseContractsTrait
 {
 
     use UserEntityTrait;
@@ -37,6 +37,6 @@ abstract class UserRecoverPasswordRepositoryAdapterAbstract implements UserEntit
     /**
      * @return mixed
      */
-    abstract public function recover(UserRecoverPasswordRepositoryAdapterAbstract $interface);
+    abstract public function recover(RecoverPasswordRepositoryAdapterAbstract $interface);
 
 }

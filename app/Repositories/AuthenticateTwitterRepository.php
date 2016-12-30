@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\Contracts\AuthenticateTwitterRepositoryInterface;
 use App\Entity\UserOAuthTwitterEntityTrait;
-use App\Repositories\Adapter\UserOAuthTwitterQueryFindByIdAdapterFixed;
+use App\Repositories\Adapter\OAuthTwitterQueryFindByIdAdapterFixed;
 use App\UserOAuthTwitter;
 use App\Repositories\Adapter\UserLogLoginAllRepositoryAbstract;
 
@@ -21,7 +21,7 @@ class AuthenticateTwitterRepository implements AuthenticateTwitterRepositoryInte
 
     public function __construct()
     {
-        $this->check = new UserOAuthTwitterQueryFindByIdAdapterFixed();
+        $this->check = new OAuthTwitterQueryFindByIdAdapterFixed();
         $this->auth = new UserOAuthTwitter();
         $this->log = new UserLogLoginAllRepository;
     }

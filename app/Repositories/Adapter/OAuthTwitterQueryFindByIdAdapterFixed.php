@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\UserOAuthTwitter;
 
-class UserOAuthTwitterQueryFindByIdAdapterFixed extends UserOAuthQueryFindByIdApaterAbstract
+class OAuthTwitterQueryFindByIdAdapterFixed extends OAuthQueryFindByIdApaterAbstract
 {
 
     public function findByIdOAuth($id)
