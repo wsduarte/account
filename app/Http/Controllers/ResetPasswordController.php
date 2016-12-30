@@ -7,7 +7,7 @@ use App\Repositories\UserResetPasswordRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class UserResetPasswordController extends Controller
+class ResetPasswordController extends Controller
 {
 
     protected $repository;
@@ -50,7 +50,7 @@ class UserResetPasswordController extends Controller
 
             echo $request->input('token');
 
-            
+
 
 
         } catch (\Exception $e) {

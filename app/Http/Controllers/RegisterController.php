@@ -6,7 +6,7 @@ use App\Repositories\UserRegisterRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 
-class UserRegisterController extends Controller
+class RegisterController extends Controller
 {
 
     protected $repository;

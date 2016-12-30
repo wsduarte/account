@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class UserInvitationController extends Controller
+class InvitationController extends Controller
 {
 
     public function accept()

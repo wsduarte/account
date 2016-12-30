@@ -7,7 +7,7 @@ use App\Repositories\UserRecoverPasswordRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class UserRecoverPasswordController extends Controller
+class RecoverPasswordController extends Controller
 {
 
     protected $repository;

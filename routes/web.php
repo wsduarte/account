@@ -2,31 +2,31 @@
 
 Route::get('/redirecionando', ['as' => 'redirect.login', 'uses' => 'RedirectController@index']);
 
-Route::get('/', ['as' => 'login', 'uses' => 'UserLoginController@index']);
+Route::get('/', ['as' => 'login', 'uses' => 'LoginController@index']);
 Route::group(['prefix' => 'autenticar'], function() {
-    Route::post('autenticar/post', ['as' => 'authenticate.post', 'uses' => 'UserLoginController@getPostAuthenticate']);
+    Route::post('autenticar/post', ['as' => 'authenticate.post', 'uses' => 'LoginController@getPostAuthenticate']);
 });
 
 Route::group(['prefix' => 'registrar'], function() {
-    Route::get('/', ['as' => 'register', 'uses' => 'UserRegisterController@register']);
-    Route::get('/post', ['as' => 'register.post', 'uses' => 'UserRegisterController@getPostRegister']);
+    Route::get('/', ['as' => 'register', 'uses' => 'RegisterController@register']);
+    Route::get('/post', ['as' => 'register.post', 'uses' => 'RegisterController@getPostRegister']);
 });
 
 Route::group(['prefix' => 'recuperar-senha'], function() {
-    Route::get('/', ['as' => 'recover', 'uses' => 'UserRecoverPasswordController@recover']);
-    Route::post('post', ['as' => 'recover.post', 'uses' => 'UserRecoverPasswordController@getPostRecover']);
-    Route::get('aviso', ['as' => 'recover.notice', 'uses' => 'UserRecoverPasswordController@notice']);
+    Route::get('/', ['as' => 'recover', 'uses' => 'RecoverPasswordController@recover']);
+    Route::post('post', ['as' => 'recover.post', 'uses' => 'RecoverPasswordController@getPostRecover']);
+    Route::get('aviso', ['as' => 'recover.notice', 'uses' => 'RecoverPasswordController@notice']);
 });
 
 Route::group(['prefix' => 'senha-redefinir'], function() {
 
-    Route::get('/{token}', ['as' => 'reset.password', 'uses' => 'UserResetPasswordController@reset']);
-    Route::post('/post', ['as' => 'reset.password.post', 'uses' => 'UserResetPasswordController@getPostReset']);
+    Route::get('/{token}', ['as' => 'reset.password', 'uses' => 'ResetPasswordController@reset']);
+    Route::post('/post', ['as' => 'reset.password.post', 'uses' => 'ResetPasswordController@getPostReset']);
 
 });
 
-Route::get('convite-aceitar', ['as' => 'invitation.accept', 'uses' => 'UserInvitationController@accept']);
-Route::get('convite-recusar', ['as' => 'invitation.refused', 'uses' => 'UserInvitationController@refused']);
+Route::get('convite-aceitar', ['as' => 'invitation.accept', 'uses' => 'InvitationController@accept']);
+Route::get('convite-recusar', ['as' => 'invitation.refused', 'uses' => 'InvitationController@refused']);
 
 /** OAuth 2.0 **/
 Route::group(['prefix' => 'oauth'], function() {

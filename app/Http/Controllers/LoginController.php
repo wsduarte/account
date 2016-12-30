@@ -7,7 +7,7 @@ use App\Repositories\UserAuthenticateRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 
-class UserLoginController extends Controller
+class LoginController extends Controller
 {
 
     protected $repository;
