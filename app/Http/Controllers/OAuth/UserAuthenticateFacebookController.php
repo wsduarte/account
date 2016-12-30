@@ -52,7 +52,9 @@ class UserAuthenticateFacebookController extends Controller
 
                     $data = $this->repository->authenticate($this->repository);
 
-                    dd($data);
+                    
+
+                    //dd($data);
 //                    if (!is_array($data) && $data === false) {
 //                        Session::flash('message', \Config::get('constants.OAUTH_NOT_CONNECTED'));
 //                        return redirect((string)url('/'));
@@ -60,6 +62,9 @@ class UserAuthenticateFacebookController extends Controller
 //                        UserSessions::create($data);
 //                        return redirect()->route('/');
 //                    }
+
+                    return redirect()->route('redirect.login');
+
                 }
 
             }

@@ -52,10 +52,9 @@ class UserAuthenticateTwitterController extends Controller
                     $this->repository->setAuthLocation($result['location']);
                     $this->repository->setAuthSite($result['entities']['url']['urls']['0']['expanded_url']);
 
-
                     $data = $this->repository->authenticate($this->repository);
-
-                    dd($data);
+                    $request->session()->put('url_redirect', 'https://www.facebook.com/');
+                    //dd($data);
     //                if (!is_array($data) && $data === false) {
     //                    Session::flash('message', \Config::get('constants.OAUTH_NOT_CONNECTED'));
     //                    return redirect((string) url('/'));
@@ -63,6 +62,7 @@ class UserAuthenticateTwitterController extends Controller
     //                    UserSessions::create($data);
     //                    return redirect((string) url('/'));
     //                }
+
                 }
 
             }

@@ -60,6 +60,8 @@ class UserRegisterFacebookController extends Controller
 //                        UserSessions::create($data);
 //                        return redirect((string)url('/'));
 //                    }
+                    return redirect()->route('redirect.login');
+
                 }
 
             } // if not ask for permission first

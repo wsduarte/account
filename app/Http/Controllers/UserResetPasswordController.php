@@ -50,6 +50,8 @@ class UserResetPasswordController extends Controller
 
             echo $request->input('token');
 
+            
+
 
         } catch (\Exception $e) {
 

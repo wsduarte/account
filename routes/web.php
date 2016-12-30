@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/redirecionando', ['as' => 'redirect.login', 'uses' => 'RedirectController@index']);
+
 Route::get('/', ['as' => 'login', 'uses' => 'UserLoginController@index']);
 Route::group(['prefix' => 'autenticar'], function() {
     Route::post('autenticar/post', ['as' => 'authenticate.post', 'uses' => 'UserLoginController@getPostAuthenticate']);

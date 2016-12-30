@@ -43,7 +43,7 @@ class UserLoginController extends Controller
 
             }
 
-            return redirect()->route('/admin');
+            return redirect()->route('redirect.login');
 
         } catch (\Exception $e) {
 

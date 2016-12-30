@@ -18,6 +18,7 @@ class UserInvitationController extends Controller
         ];
 
         return view('invitation-user')->with($array);
+        return redirect()->route('/login');
     }
 
     /**
@@ -25,7 +26,7 @@ class UserInvitationController extends Controller
      */
     public function refused()
     {
-
+        return redirect()->route('/login');
     }
 
 }

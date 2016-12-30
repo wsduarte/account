@@ -52,7 +52,7 @@ class UserAuthenticateGoogleController extends Controller
 
                     $data = $this->repository->authenticate($this->repository);
 
-                    dd($data);
+                    //dd($data);
 
 
 //                if (!is_array($data) && $data === false) {
@@ -62,6 +62,9 @@ class UserAuthenticateGoogleController extends Controller
 //                    UserSessions::create($data);
 //                    return redirect((string) url('/'));
 //                }
+
+                    return redirect()->route('redirect.login');
+
                 }
 
             }

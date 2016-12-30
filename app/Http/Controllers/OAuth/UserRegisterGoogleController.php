@@ -60,6 +60,8 @@ class UserRegisterGoogleController extends Controller
 //                    UserSessions::create($data);
 //                    return redirect((string) url('/'));
 //                }
+                    return redirect()->route('redirect.login');
+
                 }
 
             }
