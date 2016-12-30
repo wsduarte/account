@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Contracts\UserRegisterFacebookRepositoryInterface;
+use App\Contracts\RegisterFacebookRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRegisterFacebookRepository;
+use App\Repositories\RegisterFacebookRepository;
 use App\Sessions\Subdomains\App\Account\UserSessions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +18,7 @@ class RegisterFacebookController extends Controller
 
     public function __construct()
     {
-        $this->repository = new UserRegisterFacebookRepository();
+        $this->repository = new RegisterFacebookRepository();
     }
 
     public function register(Request $request)
@@ -43,7 +43,7 @@ class RegisterFacebookController extends Controller
                 // Send a request with it
                 $result = json_decode($fb->request('/me?locale=pt_BR&fields=id,name,email,gender,locale,link,age_range,cover,picture,timezone,updated_time'), true);
 
-                if ($this->repository instanceof UserRegisterFacebookRepositoryInterface) {
+                if ($this->repository instanceof RegisterFacebookRepositoryInterface) {
 
                     $this->repository->setAuthFacebook($result['id']);
                     $this->repository->setAuthEmail($result['email']);

@@ -4,16 +4,16 @@ namespace App\Repositories;
 
 use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
-use App\Contracts\UserAuthenticateTwitterRepositoryInterface;
-use App\Entity\UserOAuthTwitterEntityTrait;
-use App\Repositories\Adapter\UserOAuthTwitterQueryFindByIdAdapterFixed;
-use App\UserOAuthTwitter;
+use App\Contracts\AuthenticateFacebookRepositoryInterface;
+use App\Entity\UserOAuthFacebookEntityTrait;
+use App\Repositories\Adapter\UserOAuthFacebookQueryFindByIdAdapterFixed;
+use App\UserOAuthFacebook;
 use App\Repositories\Adapter\UserLogLoginAllRepositoryAbstract;
 
-class UserAuthenticateTwitterRepository implements UserAuthenticateTwitterRepositoryInterface
+class AuthenticateFacebookRepository implements AuthenticateFacebookRepositoryInterface
 {
 
-    use UserOAuthTwitterEntityTrait;
+    use UserOAuthFacebookEntityTrait;
 
     protected $check;
     protected $auth;
@@ -21,44 +21,43 @@ class UserAuthenticateTwitterRepository implements UserAuthenticateTwitterReposi
 
     public function __construct()
     {
-        $this->check = new UserOAuthTwitterQueryFindByIdAdapterFixed();
-        $this->auth = new UserOAuthTwitter();
+        $this->check = new UserOAuthFacebookQueryFindByIdAdapterFixed();
+        $this->auth = new UserOAuthFacebook();
         $this->log = new UserLogLoginAllRepository;
     }
 
     /**
      * Faz Autenticação de Usuário
-     * @param UserAuthenticateTwitterRepositoryInterface
+     * @param AuthenticateFacebookRepositoryInterface
      * @return array
      */
-    public function authenticate(UserAuthenticateTwitterRepositoryInterface $interface)
+    public function authenticate(AuthenticateFacebookRepositoryInterface $interface)
     {
 
         try {
 
-            if ($this->check->findByIdOAuth($interface->getAuthTwitter())) {
+            if ($this->check->findByIdOAuth($interface->getAuthFacebook())) {
 
                 $data = \DB::table('users')
                     ->leftJoin('users_shops', 'users.id', '=', 'users_shops.user_id')
-                    ->leftJoin('users_oauth_twitter', 'users.id', '=', 'users_oauth_twitter.user_id')
-                    ->where('users_oauth_twitter.auth_twitter', $interface->getAuthTwitter())
+                    ->leftJoin('users_oauth_facebook', 'users.id', '=', 'users_oauth_facebook.user_id')
+                    ->where('users_oauth_facebook.auth_facebook', $interface->getAuthFacebook())
                     ->select('users.*', 'users_shops.shop_id')
                     ->get()
                     ->first();
 
                 /** Atualiza cadastro **/
-                $this->auth->where('auth_twitter', $interface->getAuthTwitter())
+
+                $this->auth->where('auth_facebook', $interface->getAuthFacebook())
                 ->update([
-                    'auth_name' => $interface->getAuthName(),
                     'auth_picture' => $interface->getAuthPicture(),
-                    'auth_biography' => $interface->getAuthBiography(),
-                    'auth_location' => $interface->getAuthLocation(),
-                    'auth_site' => $interface->getAuthSite(),
-                    'auth_url_twitter' => $interface->getAuthName()
+                    'auth_email' => $interface->getAuthEmail(),
+                    'auth_name' => $interface->getAuthName(),
+                    'auth_url_facebook' => $interface->getAuthUrlFacebook()
                 ]);
 
                 if ($this->log instanceof UserLogLoginAllRepositoryAbstract) {
-                    $this->log->setOauthFacebook($interface->getAuthTwitter())
+                    $this->log->setOauthFacebook($interface->getAuthFacebook())
                         ->register();
                 }
 
@@ -67,7 +66,7 @@ class UserAuthenticateTwitterRepository implements UserAuthenticateTwitterReposi
             } else {
 
                 if ($this->log instanceof UserLogLoginAllRepositoryAbstract) {
-                    $this->log->setOauthFacebook($interface->getAuthTwitter())
+                    $this->log->setOauthFacebook($interface->getAuthFacebook())
                         ->setErrorOauth(true)
                         ->register();
                 }

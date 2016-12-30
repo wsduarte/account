@@ -78,7 +78,7 @@ class UserRecoverPasswordRepositoryTest extends TestCase
         if ($this->test instanceof UserRecoverPasswordRepositoryAdapterAbstract) {
 
 
-            $register = new \App\Repositories\UserRegisterRepository();
+            $register = new \App\Repositories\RegisterRepository();
 
             $id = $register->setName($this->randon)
                 ->setEmail($this->email)

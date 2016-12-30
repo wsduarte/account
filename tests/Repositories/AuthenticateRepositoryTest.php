@@ -1,9 +1,9 @@
 <?php
 
-use App\Repositories\UserRegisterRepository;
-use App\Repositories\UserAuthenticateRepository;
+use App\Repositories\RegisterRepository;
+use App\Repositories\AuthenticateRepository;
 
-class UserAuthenticateRepositoryTest extends TestCase
+class AuthenticateRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -16,8 +16,8 @@ class UserAuthenticateRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserAuthenticateRepository();
-        if($this->test instanceof UserAuthenticateRepositoryInterface) {
+        $this->test = new AuthenticateRepository();
+        if($this->test instanceof AuthenticateRepositoryInterface) {
             $this->assertTrue(method_exists($this->test, 'getEmail'), 'Method was not corret: getEmail');
             $this->assertTrue(method_exists($this->test, 'setEmail'), 'Method was not corret: setEmail');
             $this->assertTrue(method_exists($this->test, 'getPassword'), 'Method was not corret: getPassword');
@@ -85,7 +85,7 @@ class UserAuthenticateRepositoryTest extends TestCase
     public function testShouldRegisterAndAuthenticateUser()
     {
 
-        $this->register = new UserRegisterRepository();
+        $this->register = new RegisterRepository();
 
         $id = $this->register->setName($this->randon)
              ->setEmail($this->email)

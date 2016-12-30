@@ -5,10 +5,10 @@ namespace App\Contracts;
 use App\Contracts\Entity\UserEntityForUseContractsTrait;
 
 /**
- * Interface UserRegisterRepositoryInterface
+ * Interface RegisterRepositoryInterface
  * @package App\Contracts
  */
-interface UserRegisterRepositoryInterface extends UserEntityForUseContractsTrait
+interface RegisterRepositoryInterface extends UserEntityForUseContractsTrait
 {
 
     /**

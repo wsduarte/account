@@ -2,45 +2,54 @@
 
 namespace App\Repositories\Adapter;
 
-use App\Contracts\UserRegisterRepositoryInterface;
+use App\Contracts\Entity\UserEntityForUseContractsTrait;
 use App\Entity\UserEntityTrait;
 use App\Libs\Validate;
 use Respect\Validation\Validator as v;
 
-abstract class UserRegisterRepositoryAdapterAbstract implements UserRegisterRepositoryInterface
+
+/**
+ * Class ResetPasswordRepositoryAdapterAbstract
+ * @package App\Repositories\Adapter
+ */
+abstract class ResetPasswordRepositoryAdapterAbstract implements UserEntityForUseContractsTrait
 {
 
     use UserEntityTrait;
 
+    /**
+     * @var
+     */
+    protected $token;
+    /**
+     * @var
+     */
     protected $password_equals;
 
     /**
-     * @param $name
-     * @return $this
+     * @return mixed
      */
-    public function setName($name)
+    public function getToken()
     {
-        if(!v::stringType()->notEmpty()->validate($name)) {
-            throw new \InvalidArgumentException(
-                \Config::get('constants.PLEASE_ENTER_NAME_VALID'), E_USER_WARNING
-            );
-        }
-        $this->name = $name;
-        return $this;
+        return $this->token;
     }
 
     /**
-     * @param $email
+     * @param $token
      * @return $this
      */
-    public function setEmail($email)
+    public function setToken($token)
     {
-        if(!v::email()->notEmpty()->validate($email)) {
+        $this->token = $token;
+
+        if (!Validate::isSha1($this->token)) {
+
             throw new \InvalidArgumentException(
-                \Config::get('constants.PLEASE_ENTER_EMAIL_VALID'), E_USER_WARNING
+                \Config::get('constants.SHA1_INVALID'), E_USER_WARNING
             );
+
         }
-        $this->email = $email;
+
         return $this;
     }
 
@@ -98,6 +107,8 @@ abstract class UserRegisterRepositoryAdapterAbstract implements UserRegisterRepo
         return $this;
     }
 
-    abstract public function register(UserRegisterRepositoryAdapterAbstract $interface);
-
+    /**
+     * @return mixed
+     */
+    abstract public function reset(ResetPasswordRepositoryAdapterAbstract $interface);
 }

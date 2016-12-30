@@ -5,16 +5,16 @@ namespace App\Repositories;
 use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\User;
-use App\Contracts\UserRegisterFacebookRepositoryInterface;
+use App\Contracts\RegisterFacebookRepositoryInterface;
 use App\Entity\UserOAuthFacebookEntityTrait;
 use App\Repositories\Adapter\UserOAuthFacebookQueryFindByIdAdapterFixed;
 use App\UserOAuthFacebook;
 
 /**
- * Class UserRegisterFacebookRepository
+ * Class RegisterFacebookRepository
  * @package App\Repositories
  */
-class UserRegisterFacebookRepository implements UserRegisterFacebookRepositoryInterface
+class RegisterFacebookRepository implements RegisterFacebookRepositoryInterface
 {
 
     use UserOAuthFacebookEntityTrait;
@@ -31,10 +31,10 @@ class UserRegisterFacebookRepository implements UserRegisterFacebookRepositoryIn
     }
 
     /**
-     * @param UserRegisterFacebookRepositoryInterface $interface
+     * @param RegisterFacebookRepositoryInterface $interface
      * @return bool|mixed
      */
-    public function register(UserRegisterFacebookRepositoryInterface $interface)
+    public function register(RegisterFacebookRepositoryInterface $interface)
     {
 
         try {

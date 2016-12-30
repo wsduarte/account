@@ -1,8 +1,8 @@
 <?php
 
-use App\Repositories\UserRegisterFacebookRepository;
+use App\Repositories\RegisterFacebookRepository;
 
-class UserRegisterFacebookRepositoryTest extends TestCase
+class RegisterFacebookRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -15,7 +15,7 @@ class UserRegisterFacebookRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserRegisterFacebookRepository();
+        $this->test = new RegisterFacebookRepository();
         $this->randon = str_random(10);
         $this->email = str_random(10) .'@test.com';
     }

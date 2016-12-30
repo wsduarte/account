@@ -4,17 +4,17 @@ namespace App\Repositories;
 
 use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
-use App\Contracts\UserRegisterGoogleRepositoryInterface;
+use App\Contracts\RegisterGoogleRepositoryInterface;
 use App\Entity\UserOAuthGoogleEntityTrait;
 use App\Repositories\Adapter\UserOAuthGoogleQueryFindByIdAdapterFixed;
 use App\UserOAuthGoogle;
 use App\User;
 
 /**
- * Class UserRegisterGoogleRepository
+ * Class RegisterGoogleRepository
  * @package App\Repositories
  */
-class UserRegisterGoogleRepository implements UserRegisterGoogleRepositoryInterface
+class RegisterGoogleRepository implements RegisterGoogleRepositoryInterface
 {
 
     use UserOAuthGoogleEntityTrait;
@@ -31,10 +31,10 @@ class UserRegisterGoogleRepository implements UserRegisterGoogleRepositoryInterf
     }
 
     /**
-     * @param UserRegisterGoogleRepositoryInterface $interface
+     * @param RegisterGoogleRepositoryInterface $interface
      * @return bool|mixed
      */
-    public function register(UserRegisterGoogleRepositoryInterface $interface)
+    public function register(RegisterGoogleRepositoryInterface $interface)
     {
         try {
 

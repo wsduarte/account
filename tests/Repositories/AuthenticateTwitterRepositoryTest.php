@@ -1,11 +1,11 @@
 <?php
 
-use App\Repositories\UserRegisterTwitterRepository;
-use App\Contracts\UserRegisterTwitterRepositoryInterface;
-use App\Repositories\UserAuthenticateTwitterRepository;
-use App\Contracts\UserAuthenticateTwitterRepositoryInterface;
+use App\Repositories\RegisterTwitterRepository;
+use App\Contracts\RegisterTwitterRepositoryInterface;
+use App\Repositories\AuthenticateTwitterRepository;
+use App\Contracts\AuthenticateTwitterRepositoryInterface;
 
-class UserAuthenticateTwitterRepositoryTest extends TestCase
+class AuthenticateTwitterRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -17,8 +17,8 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserAuthenticateTwitterRepository();
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface) {
+        $this->test = new AuthenticateTwitterRepository();
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface) {
             $this->assertTrue(method_exists($this->test, 'authenticate'), 'Method was not corret: register');
         }
         $this->randon = str_random(10);
@@ -30,7 +30,7 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
      */
     public function testShouldRetrieveIdAuthForSetId()
     {
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface)
             $this->test->setId($this->randon);
             $this->assertEquals($this->randon, $this->test->getId());
 
@@ -42,7 +42,7 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
     public function testShouldRetrieveIdForSetUserId()
     {
 
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface)
             $this->test->setUserId($this->randon);
             $this->assertEquals($this->randon, $this->test->getUserId());
 
@@ -54,7 +54,7 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
      public function testShouldRetrieveIdAuthForSetAuthTwitter()
      {
 
-         if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+         if($this->test instanceof AuthenticateTwitterRepositoryInterface)
              $this->test->setAuthTwitter($this->randon);
              $this->assertEquals($this->randon, $this->test->getAuthTwitter());
 
@@ -66,7 +66,7 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
     public function testShouldRetrieveNameForSetAuthName()
     {
 
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface)
             $this->test->setAuthName($this->randon);
             $this->assertEquals($this->randon, $this->test->getAuthName());
 
@@ -77,7 +77,7 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
      */
     public function testShouldRetrieveImageForSetAuthPicture()
     {
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface)
             $this->test->setAuthPicture('https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png');
             $this->assertEquals('https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png', $this->test->getAuthPicture());
 
@@ -88,7 +88,7 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
      */
     public function testShouldRetrieveUrlForSetAuthUrlTwitter()
     {
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface)
             $this->test->setAuthUrlTwitter('https://www.facebook.com/');
             $this->assertEquals('https://www.facebook.com/', $this->test->getAuthUrlTwitter());
     }
@@ -100,7 +100,7 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
      */
     public function testShouldExistsThrowsUnderflowExceptionForAuthenticate()
     {
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface)
             $this->test->setAuthTwitter($this->randon);
             $this->test->authenticate($this->test);
 
@@ -112,16 +112,16 @@ class UserAuthenticateTwitterRepositoryTest extends TestCase
     public function testShouldRegisterAndAuthenticateUser()
     {
 
-        $register = new UserRegisterTwitterRepository();
+        $register = new RegisterTwitterRepository();
 
-        if ($register instanceof UserRegisterTwitterRepositoryInterface)
+        if ($register instanceof RegisterTwitterRepositoryInterface)
 
             $register->setAuthTwitter($this->randon);
             $register->setAuthName($this->randon);
             $result = $register->register($register);
             $this->assertEquals($this->randon,$result);
 
-        if($this->test instanceof UserAuthenticateTwitterRepositoryInterface)
+        if($this->test instanceof AuthenticateTwitterRepositoryInterface)
 
             $this->test->setAuthTwitter($this->randon);
             $this->test->setAuthName($this->randon);

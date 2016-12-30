@@ -2,54 +2,45 @@
 
 namespace App\Repositories\Adapter;
 
-use App\Contracts\Entity\UserEntityForUseContractsTrait;
+use App\Contracts\RegisterRepositoryInterface;
 use App\Entity\UserEntityTrait;
 use App\Libs\Validate;
 use Respect\Validation\Validator as v;
 
-
-/**
- * Class UserResetPasswordRepositoryAdapterAbstract
- * @package App\Repositories\Adapter
- */
-abstract class UserResetPasswordRepositoryAdapterAbstract implements UserEntityForUseContractsTrait
+abstract class RegisterRepositoryAdapterAbstract implements RegisterRepositoryInterface
 {
 
     use UserEntityTrait;
 
-    /**
-     * @var
-     */
-    protected $token;
-    /**
-     * @var
-     */
     protected $password_equals;
 
     /**
-     * @return mixed
+     * @param $name
+     * @return $this
      */
-    public function getToken()
+    public function setName($name)
     {
-        return $this->token;
+        if(!v::stringType()->notEmpty()->validate($name)) {
+            throw new \InvalidArgumentException(
+                \Config::get('constants.PLEASE_ENTER_NAME_VALID'), E_USER_WARNING
+            );
+        }
+        $this->name = $name;
+        return $this;
     }
 
     /**
-     * @param $token
+     * @param $email
      * @return $this
      */
-    public function setToken($token)
+    public function setEmail($email)
     {
-        $this->token = $token;
-
-        if (!Validate::isSha1($this->token)) {
-
+        if(!v::email()->notEmpty()->validate($email)) {
             throw new \InvalidArgumentException(
-                \Config::get('constants.SHA1_INVALID'), E_USER_WARNING
+                \Config::get('constants.PLEASE_ENTER_EMAIL_VALID'), E_USER_WARNING
             );
-
         }
-
+        $this->email = $email;
         return $this;
     }
 
@@ -107,8 +98,6 @@ abstract class UserResetPasswordRepositoryAdapterAbstract implements UserEntityF
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    abstract public function reset(UserResetPasswordRepositoryAdapterAbstract $interface);
+    abstract public function register(RegisterRepositoryAdapterAbstract $interface);
+
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Contracts\UserRegisterGoogleRepositoryInterface;
+use App\Contracts\RegisterGoogleRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRegisterGoogleRepository;
+use App\Repositories\RegisterGoogleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use OAuth;
@@ -17,7 +17,7 @@ class RegisterGoogleController extends Controller
 
     public function __construct()
     {
-        $this->repository = new UserRegisterGoogleRepository();
+        $this->repository = new RegisterGoogleRepository();
     }
 
     public function register(Request $request)
@@ -42,7 +42,7 @@ class RegisterGoogleController extends Controller
                 // Send a request with it
                 $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
 
-                if ($this->repository instanceof UserRegisterGoogleRepositoryInterface) {
+                if ($this->repository instanceof RegisterGoogleRepositoryInterface) {
 
                     $this->repository->setAuthGoogle($result['id']);
                     $this->repository->setAuthEmail($result['email']);

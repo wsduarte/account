@@ -1,8 +1,8 @@
 <?php
 
-use App\Repositories\UserRegisterTwitterRepository;
+use App\Repositories\RegisterTwitterRepository;
 
-class UserRegisterTwitterRepositoryTest extends TestCase
+class RegisterTwitterRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -15,7 +15,7 @@ class UserRegisterTwitterRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserRegisterTwitterRepository();
+        $this->test = new RegisterTwitterRepository();
         $this->randon = str_random(10);
         $this->email = str_random(10) .'@test.com';
     }

@@ -5,17 +5,17 @@ namespace App\Repositories;
 use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
 use App\User;
-use App\Contracts\UserRegisterTwitterRepositoryInterface;
+use App\Contracts\RegisterTwitterRepositoryInterface;
 use App\Entity\UserOAuthTwitterEntityTrait;
 use App\Repositories\Adapter\UserOAuthTwitterQueryFindByIdAdapterFixed;
 use App\UserOAuthTwitter;
 
 
 /**
- * Class UserRegisterTwitterRepository
+ * Class RegisterTwitterRepository
  * @package App\Repositories
  */
-class UserRegisterTwitterRepository implements UserRegisterTwitterRepositoryInterface
+class RegisterTwitterRepository implements RegisterTwitterRepositoryInterface
 {
 
     use UserOAuthTwitterEntityTrait;
@@ -32,10 +32,10 @@ class UserRegisterTwitterRepository implements UserRegisterTwitterRepositoryInte
     }
 
     /**
-     * @param UserRegisterTwitterRepositoryInterface $interface
+     * @param RegisterTwitterRepositoryInterface $interface
      * @return bool|mixed
      */
-    public function register(UserRegisterTwitterRepositoryInterface $interface)
+    public function register(RegisterTwitterRepositoryInterface $interface)
     {
         try {
 

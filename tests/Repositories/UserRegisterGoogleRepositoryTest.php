@@ -1,8 +1,8 @@
 <?php
 
-use App\Repositories\UserRegisterGoogleRepository;
+use App\Repositories\RegisterGoogleRepository;
 
-class UserRegisterGoogleRepositoryTest extends TestCase
+class RegisterGoogleRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -15,7 +15,7 @@ class UserRegisterGoogleRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserRegisterGoogleRepository();
+        $this->test = new RegisterGoogleRepository();
         $this->randon = str_random(10);
         $this->email = str_random(10) .'@test.com';
     }
@@ -98,7 +98,7 @@ class UserRegisterGoogleRepositoryTest extends TestCase
     public function testShouldRetrieveIDUserGoogleInInsertForRegister()
     {
 
-        if ($this->test instanceof UserRegisterGoogleRepository)
+        if ($this->test instanceof RegisterGoogleRepository)
 
             $this->test->setAuthGoogle($this->randon);
             $this->test->setAuthName($this->randon);

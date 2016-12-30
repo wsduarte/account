@@ -2,17 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Adapter\UserRegisterRepositoryAdapterAbstract;
+use App\Repositories\Adapter\RegisterRepositoryAdapterAbstract;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Exceptions\LogQueryException;
 
 /**
- * Class UserRegisterRepository
+ * Class RegisterRepository
  * @package App\Repositories
  */
-class UserRegisterRepository extends UserRegisterRepositoryAdapterAbstract
+class RegisterRepository extends RegisterRepositoryAdapterAbstract
 {
 
     protected $user;
@@ -24,10 +24,10 @@ class UserRegisterRepository extends UserRegisterRepositoryAdapterAbstract
 
     /**
      * Registro de Usuário
-     * @param UserRegisterRepositoryAdapterAbstract $interface
+     * @param RegisterRepositoryAdapterAbstract $interface
      * @return mixed
      */
-    public function register(UserRegisterRepositoryAdapterAbstract $interface)
+    public function register(RegisterRepositoryAdapterAbstract $interface)
     {
 
         try {

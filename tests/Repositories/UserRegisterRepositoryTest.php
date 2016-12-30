@@ -1,9 +1,9 @@
 <?php
 
-use App\Repositories\UserRegisterRepository;
-use App\Repositories\Adapter\UserRegisterRepositoryAdapterAbstract;
+use App\Repositories\RegisterRepository;
+use App\Repositories\Adapter\RegisterRepositoryAdapterAbstract;
 
-class UserRegisterRepositoryTest extends TestCase
+class RegisterRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -16,9 +16,9 @@ class UserRegisterRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserRegisterRepository();
+        $this->test = new RegisterRepository();
 
-        if($this->test instanceof UserRegisterRepositoryAdapterAbstract) {
+        if($this->test instanceof RegisterRepositoryAdapterAbstract) {
             $this->assertTrue(method_exists($this->test, 'getName'), 'Method was not corret: getName');
             $this->assertTrue(method_exists($this->test, 'setName'), 'Method was not corret: setName');
             $this->assertTrue(method_exists($this->test, 'getEmail'), 'Method was not corret: getEmail');
@@ -94,7 +94,7 @@ class UserRegisterRepositoryTest extends TestCase
     public function testShouldRetrieveThrowsInvalidArgumentExceptionSetPasswordEquals()
     {
 
-        if ($this->test instanceof UserRegisterRepositoryAdapterAbstract) {
+        if ($this->test instanceof RegisterRepositoryAdapterAbstract) {
 
             $this->test->setPassword($this->randon);
             $this->test->setPasswordEquals(time());
@@ -110,7 +110,7 @@ class UserRegisterRepositoryTest extends TestCase
     public function testShouldRetrieveEqualsPasswordForSetPasswordEquals()
     {
 
-        if ($this->test instanceof UserRegisterRepositoryAdapterAbstract) {
+        if ($this->test instanceof RegisterRepositoryAdapterAbstract) {
 
             $this->test->setPassword($this->randon);
             $this->test->setPasswordEquals($this->randon);

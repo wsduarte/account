@@ -4,13 +4,13 @@ namespace App\Repositories;
 
 use Illuminate\Database\QueryException;
 use App\Exceptions\LogQueryException;
-use App\Contracts\UserAuthenticateGoogleRepositoryInterface;
+use App\Contracts\AuthenticateGoogleRepositoryInterface;
 use App\Entity\UserOAuthGoogleEntityTrait;
 use App\Repositories\Adapter\UserOAuthGoogleQueryFindByIdAdapterFixed;
 use App\UserOAuthGoogle;
 use App\Repositories\Adapter\UserLogLoginAllRepositoryAbstract;
 
-class UserAuthenticateGoogleRepository implements UserAuthenticateGoogleRepositoryInterface
+class AuthenticateGoogleRepository implements AuthenticateGoogleRepositoryInterface
 {
 
     use UserOAuthGoogleEntityTrait;
@@ -28,10 +28,10 @@ class UserAuthenticateGoogleRepository implements UserAuthenticateGoogleReposito
 
     /**
      * Faz Autenticação de Usuário
-     * @param UserAuthenticateGoogleRepositoryInterface
+     * @param AuthenticateGoogleRepositoryInterface
      * @return array
      */
-    public function authenticate(UserAuthenticateGoogleRepositoryInterface $interface)
+    public function authenticate(AuthenticateGoogleRepositoryInterface $interface)
     {
 
         try {

@@ -1,11 +1,11 @@
 <?php
 
-use App\Repositories\UserRegisterGoogleRepository;
-use App\Contracts\UserRegisterGoogleRepositoryInterface;
-use App\Repositories\UserAuthenticateGoogleRepository;
-use App\Contracts\UserAuthenticateGoogleRepositoryInterface;
+use App\Repositories\RegisterFacebookRepository;
+use App\Contracts\RegisterFacebookRepositoryInterface;
+use App\Repositories\AuthenticateFacebookRepository;
+use App\Contracts\AuthenticateFacebookRepositoryInterface;
 
-class UserAuthenticateGoogleRepositoryTest extends TestCase
+class AuthenticateFacebookRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -18,13 +18,14 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserAuthenticateGoogleRepository();
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface) {
+        $this->test = new AuthenticateFacebookRepository();
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface) {
             $this->assertTrue(method_exists($this->test, 'authenticate'), 'Method was not corret: register');
         }
 
         $this->randon = str_random(10);
         $this->email = str_random(10) .'@test.com';
+
 
     }
 
@@ -33,7 +34,7 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
      */
     public function testShouldRetrieveIdAuthForSetId()
     {
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
             $this->test->setId($this->randon);
             $this->assertEquals($this->randon, $this->test->getId());
 
@@ -44,7 +45,8 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
      */
     public function testShouldRetrieveIdForSetUserId()
     {
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
+
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
             $this->test->setUserId($this->randon);
             $this->assertEquals($this->randon, $this->test->getUserId());
 
@@ -53,22 +55,22 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
      /**
       * @depends testShouldRetrieveIdForSetUserId
       */
-     public function testShouldRetrieveIdAuthForSetAuthGoogle()
+     public function testShouldRetrieveIdAuthForSetAuthFacebook()
      {
 
-         if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
-             $this->test->setAuthGoogle($this->randon);
-             $this->assertEquals($this->randon, $this->test->getAuthGoogle());
+         if($this->test instanceof AuthenticateFacebookRepositoryInterface)
+             $this->test->setAuthFacebook($this->randon);
+             $this->assertEquals($this->randon, $this->test->getAuthFacebook());
 
      }
 
     /**
-     * @depends testShouldRetrieveIdAuthForSetAuthGoogle
+     * @depends testShouldRetrieveIdAuthForSetAuthFacebook
      */
     public function testShouldRetrieveNameForSetAuthName()
     {
 
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
             $this->test->setAuthName($this->randon);
             $this->assertEquals($this->randon, $this->test->getAuthName());
 
@@ -80,7 +82,7 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
     public function testShouldRetrieveEmailForSetAuthEmail()
     {
 
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
             $this->test->setAuthEmail($this->email);
             $this->assertEquals($this->email, $this->test->getAuthEmail());
 
@@ -91,7 +93,7 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
      */
     public function testShouldRetrieveImageForSetAuthPicture()
     {
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
             $this->test->setAuthPicture('https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png');
             $this->assertEquals('https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png', $this->test->getAuthPicture());
 
@@ -100,22 +102,22 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
     /**
      * @depends testShouldRetrieveImageForSetAuthPicture
      */
-    public function testShouldRetrieveUrlForSetAuthUrlGoogle()
+    public function testShouldRetrieveUrlForSetAuthUrlFacebook()
     {
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
-            $this->test->setAuthUrlGoogle('https://www.facebook.com/');
-            $this->assertEquals('https://www.facebook.com/', $this->test->getAuthUrlGoogle());
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
+            $this->test->setAuthUrlFacebook('https://www.facebook.com/');
+            $this->assertEquals('https://www.facebook.com/', $this->test->getAuthUrlFacebook());
     }
 
 
     /**
-     * @depends testShouldRetrieveUrlForSetAuthUrlGoogle
+     * @depends testShouldRetrieveUrlForSetAuthUrlFacebook
      * @expectedException        UnderflowException
      */
     public function testShouldExistsThrowsUnderflowExceptionForAuthenticate()
     {
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
-            $this->test->setAuthGoogle($this->randon);
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
+            $this->test->setAuthFacebook($this->randon);
             $this->test->authenticate($this->test);
 
     }
@@ -126,24 +128,26 @@ class UserAuthenticateGoogleRepositoryTest extends TestCase
     public function testShouldRegisterAndAuthenticateUser()
     {
 
-        $register = new UserRegisterGoogleRepository();
+        $register = new RegisterFacebookRepository();
 
-        if ($register instanceof UserRegisterGoogleRepositoryInterface)
+        if ($register instanceof RegisterFacebookRepositoryInterface)
 
-            $register->setAuthGoogle($this->randon);
+            $register->setAuthFacebook($this->randon);
             $register->setAuthName($this->randon);
             $register->setAuthEmail($this->email);
             $result = $register->register($register);
             $this->assertEquals($this->randon,$result);
 
-        if($this->test instanceof UserAuthenticateGoogleRepositoryInterface)
+        if($this->test instanceof AuthenticateFacebookRepositoryInterface)
 
-            $this->test->setAuthGoogle($this->randon);
+            $this->test->setAuthFacebook($this->randon);
             $this->test->setAuthName($this->randon);
             $this->test->setAuthEmail($this->email);
             $result = $this->test->authenticate($this->test);
-            $this->assertEquals ($this->randon,$result->name);
+            $this->assertInternalType('object', $result);
+            $this->assertEquals($this->randon,$result->name);
 
     }
+
 
 }

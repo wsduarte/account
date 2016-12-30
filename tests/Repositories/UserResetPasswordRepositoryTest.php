@@ -1,11 +1,11 @@
 <?php
 
 use App\Repositories\Adapter\UserRecoverPasswordRepositoryAdapterAbstract;
-use App\Repositories\UserRegisterRepository;
-use App\Repositories\UserResetPasswordRepository;
-use App\Repositories\Adapter\UserResetPasswordRepositoryAdapterAbstract;
+use App\Repositories\RegisterRepository;
+use App\Repositories\ResetPasswordRepository;
+use App\Repositories\Adapter\ResetPasswordRepositoryAdapterAbstract;
 
-class UserResetPasswordRepositoryTest extends TestCase
+class ResetPasswordRepositoryTest extends TestCase
 {
 
     protected $test;
@@ -18,7 +18,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserResetPasswordRepository();
+        $this->test = new ResetPasswordRepository();
         $this->randon = str_random(10);
         $this->email = $this->randon . "@test.com";
     }
@@ -30,7 +30,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function testShouldRetrieveThrowsInvalidArgumentExceptionForSetToken()
     {
 
-        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof ResetPasswordRepositoryAdapterAbstract) {
 
             $this->test->setToken($this->randon);
 
@@ -44,7 +44,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function testShouldRetrieveTokenForSetToken()
     {
 
-        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof ResetPasswordRepositoryAdapterAbstract) {
 
             $this->test->setToken(sha1($this->randon));
             $this->assertEquals(sha1($this->randon), $this->test->getToken());
@@ -59,7 +59,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function testShouldRetrievePasswordForSetPassword()
     {
 
-        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof ResetPasswordRepositoryAdapterAbstract) {
 
             $this->test->setPassword($this->randon);
             $this->assertEquals($this->randon, $this->test->getPassword());
@@ -75,7 +75,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function testShouldRetrieveThrowsInvalidArgumentExceptionSetPasswordEquals()
     {
 
-        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof ResetPasswordRepositoryAdapterAbstract) {
 
             $this->test->setPassword($this->randon);
             $this->test->setPasswordEquals(time());
@@ -91,7 +91,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function testShouldRetrieveEqualsPasswordForSetPasswordEquals()
     {
 
-        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof ResetPasswordRepositoryAdapterAbstract) {
 
             $this->test->setPassword($this->randon);
             $this->test->setPasswordEquals($this->randon);
@@ -108,7 +108,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function testShouldRetrieveThrowsInvalidArgumentExceptionToReset()
     {
 
-        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof ResetPasswordRepositoryAdapterAbstract) {
 
             $this->test->setToken(sha1($this->randon))
                 ->setPassword($this->randon)
@@ -125,7 +125,7 @@ class UserResetPasswordRepositoryTest extends TestCase
     public function testShouldInsertNewPasswordForMethodReset()
     {
 
-        $register = new \App\Repositories\UserRegisterRepository();
+        $register = new \App\Repositories\RegisterRepository();
         $id = $register->setName($this->randon)
             ->setEmail($this->email)
             ->setPassword($this->randon)
@@ -141,7 +141,7 @@ class UserResetPasswordRepositoryTest extends TestCase
 
         }
 
-        if ($this->test instanceof UserResetPasswordRepositoryAdapterAbstract) {
+        if ($this->test instanceof ResetPasswordRepositoryAdapterAbstract) {
 
             $this->test->setToken($token);
             $result = $this->test->reset($this->test);

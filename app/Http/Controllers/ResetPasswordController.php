@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Adapter\UserResetPasswordRepositoryAdapterAbstract;
-use App\Repositories\UserResetPasswordRepository;
+use App\Repositories\Adapter\ResetPasswordRepositoryAdapterAbstract;
+use App\Repositories\ResetPasswordRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -14,7 +14,7 @@ class ResetPasswordController extends Controller
 
     public function __construct()
     {
-        $this->repository = new UserResetPasswordRepository();
+        $this->repository = new ResetPasswordRepository();
     }
 
     public function reset(Request $request)
@@ -22,7 +22,7 @@ class ResetPasswordController extends Controller
 
         try {
 
-            if ($this->repository instanceof UserResetPasswordRepositoryAdapterAbstract) {
+            if ($this->repository instanceof ResetPasswordRepositoryAdapterAbstract) {
                 $this->repository->setToken($request->route('token'));
             }
 
@@ -44,7 +44,7 @@ class ResetPasswordController extends Controller
 
         try {
 
-            if ($this->repository instanceof UserResetPasswordRepositoryAdapterAbstract) {
+            if ($this->repository instanceof ResetPasswordRepositoryAdapterAbstract) {
                 $this->repository->setToken($request->route('token'));
             }
 

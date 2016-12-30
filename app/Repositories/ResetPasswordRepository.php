@@ -3,17 +3,17 @@
 namespace App\Repositories;
 
 use App\Exceptions\LogQueryException;
-use App\Repositories\Adapter\UserResetPasswordRepositoryAdapterAbstract;
+use App\Repositories\Adapter\ResetPasswordRepositoryAdapterAbstract;
 use App\User;
 use App\UserRecoverPassword;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Class UserResetPasswordRepository
+ * Class ResetPasswordRepository
  * @package App\Repositories
  */
-class UserResetPasswordRepository extends UserResetPasswordRepositoryAdapterAbstract
+class ResetPasswordRepository extends ResetPasswordRepositoryAdapterAbstract
 {
 
     /**
@@ -35,9 +35,9 @@ class UserResetPasswordRepository extends UserResetPasswordRepositoryAdapterAbst
 
     /**
      * Altera a Senha do usuário
-     * @param UserResetPasswordRepositoryAdapterAbstract $interface
+     * @param ResetPasswordRepositoryAdapterAbstract $interface
      */
-    public function reset(UserResetPasswordRepositoryAdapterAbstract $interface)
+    public function reset(ResetPasswordRepositoryAdapterAbstract $interface)
     {
 
         try {

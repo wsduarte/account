@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Contracts\UserRegisterTwitterRepositoryInterface;
-use App\Repositories\UserRegisterTwitterRepository;
+use App\Contracts\RegisterTwitterRepositoryInterface;
+use App\Repositories\RegisterTwitterRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Sessions\Subdomains\App\Account\UserSessions;
@@ -17,7 +17,7 @@ class RegisterTwitterController extends Controller
 
     public function __construct()
     {
-        $this->repository = new UserRegisterTwitterRepository();
+        $this->repository = new RegisterTwitterRepository();
     }
 
     public function register(Request $request)
@@ -43,7 +43,7 @@ class RegisterTwitterController extends Controller
                 // Send a request with it
                 $result = json_decode($tw->request('account/verify_credentials.json'), true);
 
-                if ($this->repository instanceof UserRegisterTwitterRepositoryInterface) {
+                if ($this->repository instanceof RegisterTwitterRepositoryInterface) {
 
                     $this->repository->setAuthTwitter($result['id_str']);
                     $this->repository->setAuthName($result['name']);

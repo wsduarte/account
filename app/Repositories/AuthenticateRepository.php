@@ -7,15 +7,15 @@ use Respect\Validation\Validator as v;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use App\User;
-use App\Contracts\UserAuthenticateRepositoryInterface;
+use App\Contracts\AuthenticateRepositoryInterface;
 use App\Entity\UserEntityTrait;
 use App\Exceptions\LogQueryException;
 
 /**
- * Class UserAuthenticateRepository
+ * Class AuthenticateRepository
  * @package App\Repositories
  */
-class UserAuthenticateRepository implements UserAuthenticateRepositoryInterface
+class AuthenticateRepository implements AuthenticateRepositoryInterface
 {
 
     use UserEntityTrait;
@@ -62,10 +62,10 @@ class UserAuthenticateRepository implements UserAuthenticateRepositoryInterface
 
     /**
      * Faz Autenticação de Usuário
-     * @param UserAuthenticateRepositoryInterface $interface
+     * @param AuthenticateRepositoryInterface $interface
      * @return array
      */
-    public function autheticate(UserAuthenticateRepositoryInterface $interface)
+    public function autheticate(AuthenticateRepositoryInterface $interface)
     {
 
         try {

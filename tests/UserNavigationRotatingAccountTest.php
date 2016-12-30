@@ -1,7 +1,7 @@
 <?php
 
-use App\Repositories\UserRegisterRepository;
-use App\Repositories\Adapter\UserRegisterRepositoryAdapterAbstract;
+use App\Repositories\RegisterRepository;
+use App\Repositories\Adapter\RegisterRepositoryAdapterAbstract;
 
 class UserNavigationRotatingAccountTest extends TestCase
 {
@@ -17,7 +17,7 @@ class UserNavigationRotatingAccountTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->test = new UserRegisterRepository();
+        $this->test = new RegisterRepository();
         $this->randon = str_random(32);
         $this->email = str_random(32) .'@teste.com';
 

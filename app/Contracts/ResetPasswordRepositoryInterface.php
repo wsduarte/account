@@ -4,10 +4,10 @@ namespace App\Contracts;
 
 
 /**
- * Interface UserResetPasswordRepositoryInterface
+ * Interface ResetPasswordRepositoryInterface
  * @package App\Contracts
  */
-interface UserResetPasswordRepositoryInterface
+interface ResetPasswordRepositoryInterface
 {
 
     /**
